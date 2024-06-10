@@ -58,3 +58,7 @@ html,
 body {
     overflow: hidden
 }
+
+* {
+    cursor: none;
+}
