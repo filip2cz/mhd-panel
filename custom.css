@@ -1,0 +1,44 @@
+.header {
+    visibility: hidden;
+}
+
+.footer {
+    visibility: hidden;
+}
+
+.sidebar {
+    visibility: hidden;
+}
+
+.tabs {
+    visibility: hidden;
+}
+
+.checkboxes {
+    visibility: hidden;
+}
+
+.boxes-filter {
+    visibility: hidden;
+}
+
+.content {
+    position: absolute;
+    top: 0px;
+}
+
+.block-main {
+    position: absolute;
+    top: 0px;
+}
+
+.title {
+    position: absolute;
+    top: 0px;
+}
+
+.boxes {
+    position: absolute;
+    top: 60px;
+    width: 610px;
+}
