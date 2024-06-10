@@ -22,9 +22,16 @@
     visibility: hidden;
 }
 
+.cmplz-manage-consent {
+    visibility: hidden;
+}
+
 .content {
     position: absolute;
     top: 0px;
+    width: 100%;
+    height: 96%;
+    overflow: hidden
 }
 
 .block-main {
@@ -40,5 +47,10 @@
 .boxes {
     position: absolute;
     top: 60px;
-    width: 610px;
+    width: 100vw;
+}
+
+html,
+body {
+    overflow: hidden
 }
