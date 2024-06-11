@@ -6,4 +6,4 @@
 
 3) vlož vlastní obsah
 
-Pokud to chceš běhat na nějakém panelu, můžeš použít třeba příkaz `chromium --kiosk https://www.example.com`
+Pokud to chceš běhat na nějakém panelu, můžeš použít třeba příkaz `chromium --kiosk "https://www.example.com"`
