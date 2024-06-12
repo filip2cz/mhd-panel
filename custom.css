@@ -30,6 +30,14 @@
     visibility: hidden;
 }
 
+.is-lowfloor {
+    visibility: hidden;
+}
+
+.box.view-stop.view-busreg {
+  border-left-color: grey;
+}
+
 .content {
     position: absolute;
     top: 0px;
@@ -56,7 +64,21 @@
 
 html,
 body {
-    overflow: hidden
+    overflow: hidden;
+    color: white;
+    background-color: black;
+}
+
+.box-cnt-column {
+    color: white;
+}
+
+.view-light {
+    background-color: black;
+}
+
+.box {
+    border-color: white;
 }
 
 * {
