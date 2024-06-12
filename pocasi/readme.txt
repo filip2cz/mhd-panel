@@ -1,0 +1,1 @@
+https://www.meteo-pocasi.cz/maps/cz/praha/1378-meteostanice-praha-20/
