@@ -1,0 +1,1 @@
+Vloží do pravého dolního rohu hodiny
