@@ -12,6 +12,7 @@ clockElement.style.border = '1px solid black';
 clockElement.style.padding = '10px';
 clockElement.style.fontFamily = 'Arial, sans-serif';
 clockElement.style.fontSize = '64px';
+clockElement.style.color = "white";
 
 // Přidání prvku do těla stránky
 document.body.appendChild(clockElement);
