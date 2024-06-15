@@ -25,3 +25,46 @@
 .tpl-royalty-branding-bottom {
     visibility: hidden;
 }
+
+.c_d1 {
+    position: absolute;
+    margin-top: -790px;
+    size: 200%;
+}
+
+.c_dL {
+    margin-left: -20px;
+}
+
+body {
+    overflow: hidden !important;
+
+}
+
+/* darkmode */
+
+body {
+    background-color: black;
+}
+
+.c_dX {
+    background-color: black;
+    color: white;
+}
+
+.c_eo {
+    background-color: black;
+}
+
+.c_eB {
+    background-color: black;
+}
+
+.c_eD {
+    background-color: black;
+}
+
+* {
+    background-color: black !important;
+    color: white !important;
+}
