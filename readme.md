@@ -6,7 +6,7 @@
 
 ## Custom Javascript
 - Firefox: https://addons.mozilla.org/cs/firefox/addon/javascript/
-- Chrome:
+- Chrome: https://chromewebstore.google.com/detail/custom-javascript-for-web/fadhnaamieppahmfbeppffbpfkkiohdl
 
 ## Kiosk mode
 `chromium --kiosk "https://www.example.com"`
