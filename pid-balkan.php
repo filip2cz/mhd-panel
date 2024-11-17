@@ -70,16 +70,15 @@
                     busCell.textContent = bus;
                     row.appendChild(busCell);
 
-                    // Buňka pro čas odjezdu
-                    const timeCell = document.createElement('td');
-                    timeCell.textContent = time;
-                    row.appendChild(timeCell);
-
                     // Buňka pro konečnou
                     const headsignCell = document.createElement('td');
                     headsignCell.textContent = headsign;
                     row.appendChild(headsignCell);
 
+                    // Buňka pro čas odjezdu
+                    const timeCell = document.createElement('td');
+                    timeCell.textContent = time;
+                    row.appendChild(timeCell);
 
                     delayMinutes = Math.floor(Number(delay) / 60);
 
