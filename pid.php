@@ -65,7 +65,7 @@
                     else {
                         return `${bus} | ${headsign} | ${time} | ${delayMinutes} minut`;
                     }
-                }).join("<br>-----------------------------------<br>");
+                }).join("<br>---------------------------------------------------<br>");
 
                 /*
                 // Výpis do konzole
@@ -84,7 +84,7 @@
         </script>
 
         <div class="output">Číslo | Směr | Čas | Zpoždění</div>
-        <div class="output">-----------------------------------</div>
+        <div class="output">---------------------------------------------------</div>
         <p class="output" id="busSchedule"></p> <!-- Sem se vypíší data -->
 
         <pre class="vs-code" id="testOutput"></pre>
