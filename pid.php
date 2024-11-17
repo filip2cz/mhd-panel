@@ -87,7 +87,9 @@
         <div class="output">---------------------------------------------------</div>
         <p class="output" id="busSchedule"></p> <!-- Sem se vypíší data -->
 
-        <pre class="vs-code" id="testOutput"></pre>
+        <pre id="testOutput"></pre>
+
+        <script src="hodiny.js"></script>
 
     </div>
 
