@@ -5,3 +5,6 @@ body {
 .output {
     font-size: xx-large;
 }
+tr {
+    border: 5px solid white;
+}

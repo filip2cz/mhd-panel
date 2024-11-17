@@ -5,7 +5,7 @@
     <title>Smart panel: PID</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
-    <meta http-equiv="refresh" content="20;url=pocasi.php">
+    <meta http-equiv="refresh" content="20;url=pid-zastodolami.php">
 </head>
 
 <body>
@@ -51,24 +51,45 @@
                 // Parsování dat
                 const data = JSON.parse(rawResponse);
 
+                // Funkce pro přidání řádku do tabulky
+                const tbody = document.querySelector("#busSchedule tbody");
+
                 // Výpis
-                const result = data[0].map(entry => {
+                data[0].forEach(entry => {
                     const bus = entry.route.short_name;
                     const time = new Date(entry.departure.timestamp_scheduled).toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' });
                     const delay = entry.departure.delay_seconds;
                     const headsign = entry.trip.headsign;
 
-                    if (delay != null) {
-                        delayMinutes = Math.floor(Number(delay) / 60);
-                    }
+                    // Vytvoření nového řádku
+                    const row = document.createElement('tr');
 
-                    if (delay == null || delay == "0") {
-                        return `${bus} | ${headsign} | ${time}`;
-                    }
-                    else {
-                        return `${bus} | ${headsign} | ${time} | ${delayMinutes} minut`;
-                    }
-                }).join("<br>---------------------------------------------------<br>");
+                    // Buňka pro autobus
+                    const busCell = document.createElement('td');
+                    busCell.textContent = bus;
+                    row.appendChild(busCell);
+
+                    // Buňka pro čas odjezdu
+                    const timeCell = document.createElement('td');
+                    timeCell.textContent = time;
+                    row.appendChild(timeCell);
+
+                    // Buňka pro konečnou
+                    const headsignCell = document.createElement('td');
+                    headsignCell.textContent = headsign;
+                    row.appendChild(headsignCell);
+
+
+                    delayMinutes = Math.floor(Number(delay) / 60);
+
+                    // Buňka pro zpoždění
+                    const delayCell = document.createElement('td');
+                    delayCell.textContent = delayMinutes;
+                    row.appendChild(delayCell);
+
+                    // Přidání řádku do tabulky
+                    tbody.appendChild(row);
+                });
 
                 /*
                 // Výpis do konzole
@@ -80,15 +101,24 @@
                 */
 
                 // Zobrazení uživateli
-                document.getElementById("busSchedule").innerHTML = result;
             };
 
             xhr.send();
         </script>
 
-        <div class="output">Číslo | Směr | Čas | Zpoždění</div>
-        <div class="output">---------------------------------------------------</div>
-        <p class="output" id="busSchedule"></p> <!-- Sem se vypíší data -->
+        <table class="output table table-striped" id="busSchedule">
+            <thead>
+                <tr>
+                    <td>Číslo</td>
+                    <td>Směr</td>
+                    <td>Čas</td>
+                    <td>Zpoždění</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
 
         <pre id="testOutput"></pre>
 
