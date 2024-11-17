@@ -1,1 +1,0 @@
-https://pid.cz/zastavky-pid/
