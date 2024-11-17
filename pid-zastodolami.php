@@ -21,7 +21,7 @@
 
     <div class="container">
 
-        <h1>Odjezdy z Šestajovice, Balkán</h1>
+        <h1>Odjezdy z Šestajovice, Za Stodolami</h1>
 
         <script>
             var xhr = new XMLHttpRequest();
@@ -29,7 +29,10 @@
             // https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards
 
             // Šestajovice Balkán
-            xhr.open('GET', 'https://api.golemio.cz/v2/public/departureboards?stopIds=%7B%220%22%3A%20%5B%22U1613Z1%22%2C%20%22U1613Z2%22%5D%7D&limit=30&minutesAfter=360', true);
+            //xhr.open('GET', 'https://api.golemio.cz/v2/public/departureboards?stopIds=%7B%220%22%3A%20%5B%22U1613Z1%22%2C%20%22U1613Z2%22%5D%7D&limit=30&minutesAfter=360', true);
+
+            // Šestajovice Za Stodolami
+            xhr.open('GET', 'https://api.golemio.cz/v2/public/departureboards?stopIds=%7B%220%22%3A%20%5B%22U1500Z1%22%2C%20%22U1500Z2%22%5D%7D&limit=30&minutesAfter=360', true);
 
             // Bazar
             //xhr.open('GET', 'https://api.golemio.cz/v2/public/departureboards?stopIds=%7B%220%22%3A%20%5B%22U18Z1P%22%2C%20%22U18Z1%22%2C%20%22U18Z2P%22%2C%20%22U18Z2%22%5D%7D&limit=30&minutesAfter=360', true);
