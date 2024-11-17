@@ -5,10 +5,7 @@
     <title>Smart panel: PID</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
-    <meta http-equiv="refresh" content="20;url=pid-zastodolami.php">
-    <!--
-    <meta http-equiv="refresh" content="20;url=pid-zastodolami.php">
-    -->
+    <meta http-equiv="refresh" content="20;url=pocasi.php">
 </head>
 
 <body>
@@ -131,20 +128,9 @@
         <script>
             // Funkce pro přesměrování na jinou stránku
             document.addEventListener("click", function () {
-                window.location.href = "http://localhost/pid-zastodolami.php";  // Změň na URL, kam chceš přesměrovat
-            });
-        </script>
-
-        <!--
-
-        <script>
-            // Funkce pro přesměrování na jinou stránku
-            document.addEventListener("click", function () {
                 window.location.href = "http://localhost/pocasi.php";  // Změň na URL, kam chceš přesměrovat
             });
         </script>
-
-        -->
 
     </div>
 
