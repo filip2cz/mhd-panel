@@ -2,10 +2,10 @@
 <html lang='cs' data-bs-theme="dark">
 
 <head>
-    <title>Smart panel: Počasí</title>
+    <title>Smart panel: PID</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
-    <meta http-equiv="refresh" content="200000;url=pocasi.php">
+    <meta http-equiv="refresh" content="300;url=pid-balkan.php">
 </head>
 
 <body>
@@ -18,6 +18,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
+
+    <div class="container">
+
+        <iframe src="https://mapa.pid.cz/?filter=&zoom=14&lon=14.6805&lat=50.1053" id="mapa"></iframe>
+
+        <h1><a href="pid-balkan.php" id="odkaz">Zpět</a></h1>
+
+    </div>
 
 </body>
 

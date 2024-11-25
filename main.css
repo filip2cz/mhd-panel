@@ -5,6 +5,16 @@ body {
 .output {
     font-size: xx-large;
 }
+
 tr {
     border: 5px solid white;
+}
+
+#odkaz {
+    color: white;
+}
+
+#mapa {
+    width: 100%;
+    height: 475px;
 }

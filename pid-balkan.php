@@ -5,7 +5,7 @@
     <title>Smart panel: PID</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
-    <meta http-equiv="refresh" content="20;url=pocasi.php">
+    <meta http-equiv="refresh" content="20;url=pid-balkan.php">
 </head>
 
 <body>
@@ -120,6 +120,8 @@
             </tbody>
         </table>
 
+        <h1><a href="pid-balkan-mapa.php" id="odkaz">Mapa</a></h1>
+
         <pre id="testOutput"></pre>
 
         <script src="hodiny.js"></script>
@@ -127,7 +129,7 @@
         <script>
             // Funkce pro přesměrování na jinou stránku
             document.addEventListener("click", function () {
-                window.location.href = "http://localhost/pocasi.php";  // Změň na URL, kam chceš přesměrovat
+                window.location.href = "http://localhost/pid-balkan.php";  // Změň na URL, kam chceš přesměrovat
             });
         </script>
 
