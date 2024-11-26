@@ -5,14 +5,15 @@ const clockElement = document.createElement('div');
 clockElement.id = 'clock';
 
 // Stylování prvku pomocí CSS
-clockElement.style.position = 'fixed';
-clockElement.style.right = '10px';
-clockElement.style.bottom = '10px';
+clockElement.style.position = 'absolute';
+clockElement.style.bottom = '20px';
 clockElement.style.border = '1px solid black';
-clockElement.style.padding = '10px';
 clockElement.style.fontFamily = 'Arial, sans-serif';
 clockElement.style.fontSize = '64px';
 clockElement.style.color = "white";
+clockElement.style.left = '50%'; // Umístění doprostřed horizontálně
+clockElement.style.transform = 'translateX(-50%)'; // Posun zpět o polovinu šířky pro přesné vycentrování
+clockElement.style.zIndex = '10'; // Zajistí, že bude překrývat ostatní prvky
 
 // Přidání prvku do těla stránky
 document.body.appendChild(clockElement);
