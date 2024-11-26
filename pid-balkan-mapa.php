@@ -19,9 +19,10 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
 
-    <div class="container">
+    <iframe src="https://mapa.pid.cz/?filter=&zoom=14&lon=14.6805&lat=50.1053" id="mapa" target="_self"
+        sandbox="allow-scripts allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
 
-        <iframe src="https://mapa.pid.cz/?filter=&zoom=14&lon=14.6805&lat=50.1053" id="mapa" target="_self" sandbox="allow-scripts allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
+    <div class="container">
 
         <h1><a href="pid-balkan.php" id="odkaz">Zpět</a></h1>
 
