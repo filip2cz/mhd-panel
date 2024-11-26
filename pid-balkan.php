@@ -120,7 +120,36 @@
             </tbody>
         </table>
 
-        <h1><a href="pid-balkan-mapa.php" id="odkaz">Mapa</a></h1>
+        <script>
+            // URL pro API dotaz
+            const apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=50.1069497&longitude=14.6770131&current_weather=true";
+
+            // Funkce pro získání dat
+            async function ziskejTeplotu() {
+                try {
+                    const response = await fetch(apiUrl); // Načti data z API
+                    if (!response.ok) {
+                        throw new Error(`Chyba: ${response.status}`);
+                    }
+                    const data = await response.json(); // Převeď odpověď na JSON
+                    const teplota = data.current_weather.temperature; // Získej teplotu
+
+                    // Vypiš teplotu uživateli
+                    document.getElementById("teplota").textContent = `${teplota} °C`;
+                } catch (error) {
+                    // Ošetři chyby
+                    document.getElementById("teplota").textContent = `Nepodařilo se načíst teplotu: ${error.message}`;
+                }
+            }
+
+            // Zavolej funkci pro získání dat
+            ziskejTeplotu();
+        </script>
+
+        <h1 style="display: flex; justify-content: space-between;">
+            <span id="teplota">Načítám teplotu...</span>
+            <a href="pid-balkan-mapa.php" id="odkaz">Mapa</a>
+        </h1>
 
         <pre id="testOutput"></pre>
 
