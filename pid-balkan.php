@@ -19,6 +19,8 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
 
+    <script src="hodiny.js"></script>
+
     <div class="container">
 
         <h1>Odjezdy z Šestajovice, Balkán</h1>
@@ -148,12 +150,11 @@
 
         <h1 style="display: flex; justify-content: space-between;">
             <span id="teplota">Načítám teplotu...</span>
+            <div id="hodiny"></div>
             <a href="pid-balkan-mapa.php" id="odkaz">Mapa</a>
         </h1>
 
         <pre id="testOutput"></pre>
-
-        <script src="hodiny.js"></script>
 
         <script>
             // Funkce pro přesměrování na jinou stránku
