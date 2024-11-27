@@ -1,4 +1,11 @@
 <?php
+
+if (function_exists('curl_version')) {
+    echo '';
+} else {
+    echo 'ERROR: cURL not found';
+}
+
 // Cesta k souboru, který chcete načíst
 $apikey_path = 'apikey.txt';
 
