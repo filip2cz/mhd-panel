@@ -1,5 +1,8 @@
 # mhd-panel
 
+## Je třeba, aby soubor config.json nebyl přístupný přes webový server
+Otestujte tuto skutečnost tak, že ve vašem prohlížeči, který vidí na server, zkusíte http://adresaServeru/config.json a pokud se soubor načte, je třeba provést příslušné nastavení webového serveru, aby nebylo možné soubor zobrazit. V opačném případě může dojít k odhalení vašeho nastavení serveru, včetně klíče pro přístup k datům třetích stran.
+
 ## Kiosk mode
 `chromium --kiosk "https://www.example.com"`
 
