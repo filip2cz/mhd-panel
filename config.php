@@ -7,8 +7,8 @@ $config = json_decode($json, true);
 
 // Získání dat z JSON
 $refreshTime = isset($config['refreshTime']) ? $config['refreshTime'] : 0;
-$pidUrl = isset($config['pidUrl']) ? $config['pidUrl'] : 0;
-$pidApiKey = isset($config['pidApiKey']) ? $config['pidApiKey'] : 0;
+$mhdUrl = isset($config['mhdUrl']) ? $config['mhdUrl'] : 0;
+$mhdApiKey = isset($config['mhdApiKey']) ? $config['mhdApiKey'] : 0;
 $zastavka = isset($config['zastavka']) ? $config['zastavka'] : 0;
 $weatherUrl = isset($config['weatherUrl']) ? $config['weatherUrl'] : 0;
 $enableMap = isset($config['enableMap']) ? $config['enableMap'] : 0;
@@ -42,7 +42,7 @@ if (checkUserPassword('uzivatel', 'heslo')) {
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>;url=pid-tabule.php">
+    <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>;url=mhd-tabule.php">
 </head>
 
 <body>

@@ -79,15 +79,15 @@ $config = json_decode($json, true);
 
 // Načtení velikosti okna
 if (isset($_COOKIE['window_height']) && isset($_COOKIE['window_width'])) {
-    $pidLimit = floor(($windowHeight - 214) / 65);
+    $mhdLimit = floor(($windowHeight - 214) / 65);
 } else {
-    $pidLimit = 5;
+    $mhdLimit = 5;
 }
 
 // Získání dat z JSON
 $refreshTime = isset($config['refreshTime']) ? $config['refreshTime'] : 10;
-$pidUrl = isset($config['pidUrl']) ? $config['pidUrl'] . "&limit=$pidLimit" : 0;
-$pidApiKey = isset($config['pidApiKey']) ? $config['pidApiKey'] : 0;
+$mhdUrl = isset($config['mhdUrl']) ? $config['mhdUrl'] . "&limit=$mhdLimit" : 0;
+$mhdApiKey = isset($config['mhdApiKey']) ? $config['mhdApiKey'] : 0;
 $zastavka = isset($config['zastavka']) ? $config['zastavka'] : 0;
 $enableMap = isset($config['enableMap']) ? $config['enableMap'] : 0;
 
@@ -206,7 +206,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
 <html lang='cs' data-bs-theme="dark">
 
 <head>
-    <title>Smart panel: PID Tabule</title>
+    <title>Smart panel: mhd Tabule</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -215,7 +215,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
 <body>
 
     <noscript>
-        <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>;url=pid-tabule.php">
+        <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>;url=mhd-tabule.php">
     </noscript>
 
     <style>
@@ -275,10 +275,10 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
         $ch = curl_init();
 
         // Nastavení cURL
-        curl_setopt($ch, CURLOPT_URL, $pidUrl);
+        curl_setopt($ch, CURLOPT_URL, $mhdUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "X-Access-Token: $pidApiKey",
+            "X-Access-Token: $mhdApiKey",
             "Accept: application/json"
         ]);
 
@@ -377,7 +377,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
                     ?>
                 </div>
                 <?php if ($enableMap == "true"): ?>
-                    <a href="pid-mapa.php" id="odkaz" class="vetsiText">Mapa</a>
+                    <a href="mhd-mapa.php" id="odkaz" class="vetsiText">Mapa</a>
                 <?php endif; ?>
             </h1>
         </footer>
@@ -387,7 +387,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
         <script>
             // Funkce pro přesměrování na jinou stránku při kliknutí kamkoliv
             document.addEventListener("click", function () {
-                window.location.href = "./pid-tabule.php";  // Změň na URL, kam chceš přesměrovat
+                window.location.href = "./mhd-tabule.php";  // Změň na URL, kam chceš přesměrovat
             });
         </script>
 

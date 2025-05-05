@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10;url=pid-tabule.php">
+    <meta http-equiv="refresh" content="10;url=mhd-tabule.php">
     <title>Přesměrování...</title>
 </head>
 

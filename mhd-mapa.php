@@ -16,7 +16,7 @@ $mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : 0;
     <title>Smart panel: PID Mapa</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
-    <meta http-equiv="refresh" content="300;url=pid-balkan.php">
+    <meta http-equiv="refresh" content="300;url=mhd-tabule.php">
 </head>
 
 <body>
@@ -35,7 +35,7 @@ $mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : 0;
 
     <div class="container">
 
-        <h1><a href="pid-tabule.php" id="odkaz">Zpět</a></h1>
+        <h1><a href="mhd-tabule.php" id="odkaz">Zpět</a></h1>
 
     </div>
 
