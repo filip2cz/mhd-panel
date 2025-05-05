@@ -5,7 +5,7 @@
 
 ## Pokud nefunguje získání dat přes php (projevuje se bílou obrazovkou, protože php neví, co má dělat, protože nezná curl)
 
-nainstalovat php-curl:
+nainstalovat potřebné php moduly:
 
 `sudo apt install php-curl php-xml php-mbstring`
 

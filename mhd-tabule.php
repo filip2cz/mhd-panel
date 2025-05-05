@@ -1,5 +1,5 @@
 <?php
-// Načtení obsahu souboru song.json
+// Načtení obsahu souboru config.json
 $json = file_get_contents('config.json');
 
 // Parsování JSON do PHP pole
