@@ -132,10 +132,9 @@ function ziskejTeplotu($url)
             }
         } catch (Exception $e) {
             $GLOBALS['weatherIndex'] += 1;
-            if ($GLOBALS['weatherIndex'] <= $GLOBALS['weatherSourcesCount']){
+            if ($GLOBALS['weatherIndex'] <= $GLOBALS['weatherSourcesCount']) {
                 return ziskejTeplotu($GLOBALS['weatherSources'][$GLOBALS['weatherIndex']]);
-            }
-            else {
+            } else {
                 return "Nepodařilo se načíst teplotu: " . $e->getMessage();
             }
         }
@@ -178,19 +177,17 @@ function ziskejTeplotu($url)
                 return $teplota;
             } else {
                 $GLOBALS['weatherIndex'] += 1;
-                if ($GLOBALS['weatherIndex'] <= $GLOBALS['weatherSourcesCount']){
+                if ($GLOBALS['weatherIndex'] <= $GLOBALS['weatherSourcesCount']) {
                     return ziskejTeplotu($GLOBALS['weatherSources'][$GLOBALS['weatherIndex']]);
-                }
-                else {
+                } else {
                     return "ERROR: all weather are not working";
                 }
             }
         } catch (Exception $e) {
             $GLOBALS['weatherIndex'] += 1;
-            if ($GLOBALS['weatherIndex'] <= $GLOBALS['weatherSourcesCount']){
+            if ($GLOBALS['weatherIndex'] <= $GLOBALS['weatherSourcesCount']) {
                 return ziskejTeplotu($GLOBALS['weatherSources'][$GLOBALS['weatherIndex']]);
-            }
-            else {
+            } else {
                 return "ERROR: all weather are not working";
             }
         }
@@ -363,7 +360,8 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
 
         <footer class="stranka">
             <h1 style="display: flex; justify-content: space-between;">
-                <span id="teplota" class="vetsiText"><?php echo htmlspecialchars($teplota) ?> °C</span>
+                <u><span id="teplota" class="vetsiText" onclick="weatherInfo()"><?php echo htmlspecialchars($teplota) ?>
+                    °C</span></u>
                 <div id="hodiny" class="vetsiText">
                     <?php
                     // Nastav časovou zónu (volitelné, pokud není nastavena v konfiguraci serveru)
@@ -389,6 +387,15 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
             document.addEventListener("click", function () {
                 window.location.href = "./mhd-tabule.php";  // Změň na URL, kam chceš přesměrovat
             });
+        </script>
+
+        <script>
+            // Funkce pro zobrazení informací o počasí
+            function weatherInfo() {
+                alert(
+                    "Zdroj dat o počasí:\n<?php echo htmlspecialchars($GLOBALS['weatherSources'][$GLOBALS['weatherIndex']]) ?>"
+                );
+            }
         </script>
 
     </div>
