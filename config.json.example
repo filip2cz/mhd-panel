@@ -2,7 +2,7 @@
     "refreshTime": "10",
     "mhdUrl": "https://api.golemio.cz/v2/public/departureboards?stopIds={%220%22%3A%20[%22U237Z1P%22%2C%20%22U237Z2P%22%2C%20%22U237Z3P%22]}&minutesAfter=360",
     "mhdApiKey": "PUT-YOUR-API-KEY-HERE",
-    zastavka": "Karlovo Náměstí",
+    "zastavka": "Karlovo Náměstí",
     "weatherUrl": [
 	"https://www.meteo-pocasi.cz/maps/cz/praha/1616-meteostanice-praha-vinohrady/",
 	"https://www.meteo-pocasi.cz/maps/cz/praha/1165-meteostanice-praha-3/",
