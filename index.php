@@ -34,10 +34,6 @@
 
         </p>
 
-        <p>
-            <a href="terminal.php">Settings</a>
-        </p>
-
     </div>
 
 </body>
