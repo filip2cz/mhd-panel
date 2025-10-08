@@ -21,7 +21,7 @@ $mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : 0;
 
 <body>
 
-    <link rel="stylesheet" type="text/css" href="/main.css">
+    <link rel="stylesheet" type="text/css" href="./main.css">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
