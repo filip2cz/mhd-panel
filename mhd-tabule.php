@@ -224,6 +224,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
         <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>;url=mhd-tabule.php">
     </noscript>
 
+    <!--
     <style>
         @media screen and (min-width: 1900px) {
             body {
@@ -231,6 +232,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
             }
         }
     </style>
+    -->
 
     <script>
         function setWindowSizeCookie() {
