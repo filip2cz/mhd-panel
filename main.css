@@ -26,12 +26,11 @@ footer {
 table {
     width: 100%;
     table-layout: fixed;
-    /*border-collapse: collapse;*/
     color: white;
 }
 
 table, th, td {
-    border: 2px solid white !important;
+    /*border: 2px solid white !important;*/
     border-spacing: 0;
 }
 
@@ -47,7 +46,7 @@ td:nth-child(2) {
     text-overflow: ellipsis;
 }
 
-tr:nth-child(even) {
+tr:nth-child(even), thead {
   background-color: #2c3034;
 }
 

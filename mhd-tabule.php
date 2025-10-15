@@ -203,7 +203,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
 <html lang='cs' data-bs-theme="dark">
 
 <head>
-    <title>Smart panel: mhd Tabule</title>
+    <title>MHD Tabule</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
