@@ -1,14 +1,15 @@
+body {
+    background-color: black !important;
+    overflow: hidden;
+    font-family: "Segoe UI";
+}
+
 h1 {
     color: white;
 }
 
 p {
     color: white;
-}
-
-body {
-    background-color: black !important;
-    overflow: hidden;
 }
 
 footer {
