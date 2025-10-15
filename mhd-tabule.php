@@ -301,7 +301,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
             echo '<thead>';
             echo '<tr>';
             echo '<th>Číslo</th>';
-            echo '<th>Směr</th>';
+            echo '<th class="smer">Směr</th>';
             echo '<th>Čas</th>';
             echo '<th>Zpoždění</th>';
             echo '</tr>';
@@ -323,7 +323,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
 
                 echo '<tr>';
                 echo "<td>$bus</td>";
-                echo "<td>$headsign</td>";
+                echo "<td class=\"smer\">$headsign</td>";
                 echo "<td>$time</td>";
                 echo "<td>$delayMinutes</td>";
                 echo '</tr>';

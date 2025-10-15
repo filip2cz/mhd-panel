@@ -40,10 +40,18 @@ th, td {
     padding-right: 10px;
 }
 
-td:nth-child(2) {
+.smer {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 600px){
+    .smer {
+        visibility:collapse;
+        width: 0px;
+        padding: 0;
+    }
 }
 
 tr:nth-child(even), thead {
