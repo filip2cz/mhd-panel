@@ -1,6 +1,7 @@
 h1 {
     color: white;
 }
+
 p {
     color: white;
 }
@@ -10,22 +11,48 @@ body {
     overflow: hidden;
 }
 
-.output {
-    font-size: xx-large;
+footer {
+    background-color: black !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 93%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
 }
 
-tr {
-    border: 5px solid white;
-}
-
-#odkaz {
+table {
+    width: 100%;
+    table-layout: fixed;
+    /*border-collapse: collapse;*/
     color: white;
 }
 
-#mapa {
-    width: 100%;
-    height: calc(100vh - 70px);
-    border: none;
+table, th, td {
+    border: 2px solid white !important;
+    border-spacing: 0;
+}
+
+th, td {
+    height: 50px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+td:nth-child(2) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tr:nth-child(even) {
+  background-color: #2c3034;
+}
+
+.output {
+    font-size: xx-large;
 }
 
 .stranka {
@@ -37,26 +64,12 @@ tr {
     font-size: 130%;
 }
 
-footer {
-    background-color: black !important;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #333;
+#odkaz {
     color: white;
-    text-align: center;
-    padding: 10px;
 }
 
-table {
+#mapa {
     width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-}
-
-td:nth-child(2) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    height: calc(100vh - 70px);
+    border: none;
 }

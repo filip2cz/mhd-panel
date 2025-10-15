@@ -79,7 +79,7 @@ $config = json_decode($json, true);
 
 // Načtení velikosti okna
 if (isset($_COOKIE['window_height']) && isset($_COOKIE['window_width'])) {
-    $mhdLimit = floor(($windowHeight - 214) / 65);
+    $mhdLimit = floor(($windowHeight - 335) / 50);
 } else {
     $mhdLimit = 5;
 }
@@ -213,13 +213,6 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
 
     <link rel="stylesheet" type="text/css" href="./main.css">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
-
     <noscript>
         <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>;url=mhd-tabule.php">
     </noscript>
@@ -304,7 +297,7 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
 
         // Generování tabulky
         if (!empty($data)) {
-            echo '<table class="output table table-striped" id="busSchedule">';
+            echo '<table class="output" id="busSchedule">';
             echo '<thead>';
             echo '<tr>';
             echo '<th>Číslo</th>';
@@ -315,10 +308,10 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
             echo '</thead>';
             echo '<tbody>';
             echo '<colgroup>';
-            echo '<col style="width: 100px;">';
+            echo '<col style="width: 120px;">';
             echo '<col style="width: auto;">';
             echo '<col style="width: 120px;">';
-            echo '<col style="width: 180px;">';
+            echo '<col style="width: 190px;">';
             echo '</colgroup>';
 
             foreach ($data[0] as $entry) {
