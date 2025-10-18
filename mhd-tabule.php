@@ -79,7 +79,7 @@ $config = json_decode($json, true);
 
 // Načtení velikosti okna
 if (isset($_COOKIE['window_height']) && isset($_COOKIE['window_width'])) {
-    $mhdLimit = floor($windowHeight / 52) - 5;
+    $mhdLimit = floor($windowHeight / 52) - 4;
 } else {
     $mhdLimit = 5;
 }

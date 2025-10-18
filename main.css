@@ -21,7 +21,7 @@ footer {
     background: #333;
     color: white;
     text-align: center;
-    padding: 10px;
+    z-index: -1;
 }
 
 table {
