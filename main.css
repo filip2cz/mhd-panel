@@ -72,6 +72,11 @@ tr:nth-child(even), thead {
     font-size: 130%;
 }
 
+.missingPerson {
+    display: flex;
+    justify-content: space-between;
+}
+
 #odkaz {
     color: white;
 }
