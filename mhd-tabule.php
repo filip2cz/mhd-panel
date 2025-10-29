@@ -277,6 +277,9 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
         // Vykonání požadavku
         $response = curl_exec($ch);
 
+        // debug: vypsání odpovědi
+        //echo htmlspecialchars($response);
+
         // Kontrola chyb
         if (curl_errno($ch)) {
             echo "cURL error: " . curl_error($ch);
