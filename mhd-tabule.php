@@ -253,8 +253,6 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
         setInterval(refreshPage, <?php echo htmlspecialchars($refreshTime * 1000); ?>);
     </script>
 
-    <script src="hodiny.js"></script>
-
     <div class="stranka">
 
         <h1><span class="vetsiText">Odjezdy z <?php echo htmlspecialchars($zastavka); ?></span></h1>
@@ -282,27 +280,11 @@ $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources
         }
         ?>
 
-        <footer class="stranka">
-            <h1 style="display: flex; justify-content: space-between;">
-                <u><span id="teplota" class="vetsiText" onclick="weatherInfo()"><?php echo htmlspecialchars($teplota) ?>
-                    °C</span></u>
-                <div id="hodiny" class="vetsiText">
-                    <?php
-                    // Nastav časovou zónu (volitelné, pokud není nastavena v konfiguraci serveru)
-                    date_default_timezone_set('Europe/Prague');
+        <?php
 
-                    // Získání aktuálního času ve formátu H:i:s (hodiny:minuty:vteřiny)
-                    $cas = date('H:i:s');
-
-                    // Zobrazení času na stránce
-                    echo "$cas";
-                    ?>
-                </div>
-                <?php if ($enableMap == "true"): ?>
-                    <a href="mhd-mapa.php" id="odkaz" class="vetsiText">Mapa</a>
-                <?php endif; ?>
-            </h1>
-        </footer>
+            require 'footer.php';
+        
+        ?>
 
         <pre id="testOutput"></pre>
 
