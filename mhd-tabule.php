@@ -96,7 +96,7 @@ $missingPersonActive = "false";
         ?>
 
         <?php
-            require 'missing-person.php';
+            include 'missing-person.php';
         ?>
 
         <?php
