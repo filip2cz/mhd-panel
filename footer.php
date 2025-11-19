@@ -2,7 +2,7 @@
 
 <footer class="stranka">
     <h1 style="display: flex; justify-content: space-between;">
-        <u><span id="teplota" class="vetsiText" onclick="weatherInfo()"><?php echo htmlspecialchars($teplota) ?>
+        <u><span id="teplota" class="vetsiText" onclick="weatherInfo()"> <?php require 'pocasi.php'; ?>
                 °C</span></u>
         <div id="hodiny" class="vetsiText">
             <?php
