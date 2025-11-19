@@ -13,9 +13,9 @@ if ($GLOBALS['missingPersonActive'] == "true") {
         echo '</div>';
     }
 }
-?>
 
-<?php
+
+
 if ($missingPerson == "true") {
     // URL RSS feedu
     $url = "https://aplikace.policie.gov.cz/patrani-osoby/Rss.ashx";

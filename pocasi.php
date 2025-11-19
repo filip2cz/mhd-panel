@@ -97,6 +97,7 @@ function ziskejTeplotu($url)
 
 // Získání teploty
 $teplota = ziskejTeplotu(isset($weatherSources[$weatherIndex]) ? $weatherSources[$weatherIndex] : null);
-?>
 
-<?php echo htmlspecialchars($teplota) ?>
+echo htmlspecialchars($teplota)
+
+?>
