@@ -91,7 +91,12 @@ $missingPersonActive = "false";
 
         <?php
 
-            require 'pid-public-departs.php';
+            if (str_contains($mhdUrl, 'api.golemio.cz/v2/public/departureboards')) {
+                require 'pid-public-departs.php';
+            }
+            else if (str_contains($mhdUrl, 'mpvnet.cz/pid/tab/departures')) {
+                require 'mpvnet.php';
+            }
         
         ?>
 
