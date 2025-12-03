@@ -2,13 +2,6 @@ body {
     background-color: black !important;
     overflow: hidden;
     font-family: "Segoe UI";
-}
-
-h1 {
-    color: white;
-}
-
-p {
     color: white;
 }
 
@@ -19,7 +12,6 @@ footer {
     left: 0;
     width: 93%;
     background: #333;
-    color: white;
     text-align: center;
     z-index: -1;
 }
@@ -27,7 +19,6 @@ footer {
 table {
     width: 100%;
     table-layout: fixed;
-    color: white;
 }
 
 table, th, td {
