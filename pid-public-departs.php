@@ -28,6 +28,8 @@ if (curl_errno($ch)) {
 // Zavření cURL
 curl_close($ch);
 
+// echo $response;
+
 // Zpracování dat
 $data = json_decode($response, true);
 

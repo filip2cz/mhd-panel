@@ -23,20 +23,20 @@
                     echo '<h1 style="color: red">';
                     echo "ERROR: bad password or username";
                     echo '</h1>';
-                    echo '<meta http-equiv="refresh" content="5;url=login.php">';
+                    echo '<meta http-equiv="refresh" content="5;url=./login.php">';
                 }
             } else {
                 echo "error: no password set";
-                echo '<meta http-equiv="refresh" content="5;url=login.php">';
+                echo '<meta http-equiv="refresh" content="5;url=./login.php">';
             }
         } else {
             echo '<h1 style="color: red">';
             echo "ERROR: bad password or username";
             echo '</h1>';
-            echo '<meta http-equiv="refresh" content="5;url=login.php">';
+            echo '<meta http-equiv="refresh" content="5;url=./login.php">';
         }
     } else {
-        echo '<meta http-equiv="refresh" content="0;url=login.php">';
+        echo '<meta http-equiv="refresh" content="0;url=./login.php">';
     }
 
     ?>
