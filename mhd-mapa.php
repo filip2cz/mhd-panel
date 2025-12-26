@@ -19,7 +19,7 @@ $mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : 0;
     <meta http-equiv="refresh" content="300;url=mhd-tabule.php">
 </head>
 
-<body>
+<body class="noScroll">
 
     <link rel="stylesheet" type="text/css" href="./main.css">
 

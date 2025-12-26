@@ -9,6 +9,7 @@
 <body>
 
     <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <?php
 

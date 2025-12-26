@@ -1,8 +1,11 @@
 body {
     background-color: black !important;
-    overflow: hidden;
     font-family: "Segoe UI";
     color: white;
+}
+
+.noScroll {
+    overflow: hidden;
 }
 
 footer {
