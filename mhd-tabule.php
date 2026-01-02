@@ -39,15 +39,14 @@ $missingPersonActive = "false";
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <noscript>
+        <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>; url=mhd-tabule.php">
+    </noscript>
 </head>
 
 <body class="noScroll">
 
     <link rel="stylesheet" type="text/css" href="./main.css">
-
-    <noscript>
-        <meta http-equiv="refresh" content="<?php echo htmlspecialchars($refreshTime); ?>;url=mhd-tabule.php">
-    </noscript>
 
     <!--
     <style>
@@ -87,7 +86,7 @@ $missingPersonActive = "false";
 
     <div class="stranka">
 
-        <h1><span class="vetsiText">Odjezdy z <?php echo htmlspecialchars($zastavka); ?></span></h1>
+        <h1><span class="nadpis">Odjezdy z <?php echo htmlspecialchars($zastavka); ?></span></h1>
 
         <?php
 

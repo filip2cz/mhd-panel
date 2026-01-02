@@ -16,14 +16,14 @@ $mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : 0;
     <title>MHD Mapa</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
-    <meta http-equiv="refresh" content="300;url=mhd-tabule.php">
+    <meta http-equiv="refresh" content="300; url=mhd-tabule.php">
 </head>
 
 <body class="noScroll">
 
     <link rel="stylesheet" type="text/css" href="./main.css">
 
-    <iframe src="<?php echo $mapUrl; ?>" id="mapa" target="_self"
+    <iframe src="<?php echo $mapUrl; ?>" id="mapa"
         sandbox="allow-scripts allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
 
     <div class="stranka">

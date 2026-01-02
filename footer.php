@@ -1,7 +1,7 @@
 <script src="hodiny.js"></script>
 
 <footer class="stranka">
-    <h1 style="display: flex; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between;" class="footerText">
         <u><span id="teplota" class="vetsiText" onclick="weatherInfo()"> <?php require 'pocasi.php'; ?>
                 °C</span></u>
         <div id="hodiny" class="vetsiText">
@@ -19,5 +19,5 @@
         <?php if ($enableMap == "true"): ?>
             <a href="mhd-mapa.php" id="odkaz" class="vetsiText">Mapa</a>
         <?php endif; ?>
-    </h1>
+    </div>
 </footer>

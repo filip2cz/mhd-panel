@@ -35,6 +35,10 @@ th, td {
     padding-right: 10px;
 }
 
+.nadpis {
+    font-size: 130% !important;
+}
+
 .smer {
     white-space: nowrap;
     overflow: hidden;
@@ -63,12 +67,16 @@ tr:nth-child(even), thead {
 }
 
 .vetsiText {
-    font-size: 130%;
+    font-size: 200% !important;
 }
 
 .missingPerson {
     display: flex;
     justify-content: space-between;
+}
+
+.footerText {
+    font-size: 170% !important;
 }
 
 #odkaz {

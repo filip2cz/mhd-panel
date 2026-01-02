@@ -42,6 +42,12 @@ if (isset($_COOKIE['maxLetters'])) {
 // Generování tabulky
 if (!empty($data)) {
     echo '<table class="output" id="busSchedule">';
+    echo '<colgroup>';
+    echo '<col style="width: 120px;">';
+    echo '<col style="width: auto;">';
+    echo '<col style="width: 120px;">';
+    echo '<col style="width: 190px;">';
+    echo '</colgroup>';
     echo '<thead>';
     echo '<tr>';
     echo '<th>Číslo</th>';
@@ -51,12 +57,6 @@ if (!empty($data)) {
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
-    echo '<colgroup>';
-    echo '<col style="width: 120px;">';
-    echo '<col style="width: auto;">';
-    echo '<col style="width: 120px;">';
-    echo '<col style="width: 190px;">';
-    echo '</colgroup>';
 
     foreach ($data[0] as $entry) {
         $bus = $entry['route']['short_name'];
