@@ -18,7 +18,7 @@
             $jsonfile = file_get_contents("./users/" . $_COOKIE['account'] . ".json");
             $account = json_decode($jsonfile, true);
             if (isset($account['passwd'])) {
-                if ($account['passwd'] == $_COOKIE['passwd']) {
+                if ($account['passwd'] == hash('sha256', $_COOKIE['passwd'])) {
                     require './internal/config.php';
                 } else {
                     echo '<h1 style="color: red">';
