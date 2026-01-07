@@ -1,12 +1,13 @@
 <?php
 
 if (!empty($_POST)) {
-    echo "<h3>Received POST data:</h3><pre>";
+    echo "<h3>DEBUG: Received POST data:</h3><pre>";
     print_r($_POST);
     echo "</pre><hr>";
 }
 
 ?>
+
 <h1>Configuration panel</h1>
 
 <h2>Panel settings</h2>
@@ -31,13 +32,17 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
     <div class="form-group">
         <label for="refreshTime">Refresh time:</label>
 
-        <input type="number" id="refreshTime" name="refreshTime" aria-describedby="refreshHelp"
-            value="<?php echo $refreshTime ?>">
-
         <small id="refreshHelp" class="help-text">
             Time in seconds, how often does data refresh (for example: 10)
         </small>
+
+        <br><br>
+
+        <input type="number" id="refreshTime" name="refreshTime" aria-describedby="refreshHelp"
+            value="<?php echo $refreshTime ?>">
     </div>
+
+    <br>
 
     <button type="submit">Save</button>
 </form>
@@ -47,10 +52,12 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 <form method="POST" action="">
     <div class="form-group">
         <label for="mhdUrl">MHD Url:</label>
-        <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mhdUrl']) ? $config['mhdUrl'] : '' ?>">
         <small id="mhdUrlHelp" class="help-text">
-            Url to fetch MHD data from<br>
+            Url to fetch MHD data from<br><br>
+
+        <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
+            value="<?php echo isset($config['mhdUrl']) ? $config['mhdUrl'] : '' ?>"><br><br>
+
             Supported APIs:<br>
             <ul>
                 <li><a href="https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards"
@@ -141,21 +148,29 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
                         target="_blank">here</a>)</li>
             </ul>
         </small>
-        <?php
-        if (!empty($weatherSources)) {
-            foreach ($weatherSources as $url) {
-                echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . $url . '"><br>';
+        <div id="weatherSourcesContainer">
+            <?php
+            if (!empty($weatherSources)) {
+                foreach ($weatherSources as $url) {
+                    echo '<div style="display: flex; gap: 5px; margin-bottom: 5px;">';
+                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . $url . '" style="flex-grow: 1;">';
+                    echo '<button type="button" onclick="moveUp(this)">↑</button>';
+                    echo '<button type="button" onclick="moveDown(this)">↓</button>';
+                    echo '<button type="button" onclick="this.parentElement.remove()">Remove</button>';
+                    echo '</div>';
+                }
             }
-        } else {
-            echo '<input type="text" name="weatherSources[]" class="fullWidthInput" placeholder="Add URL"><br>';
-        }
-        ?>
+            ?>
+        </div>
+        <button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;">Add URL</button>
     </div>
     <button type="submit">Save</button>
 </form>
 
 <hr>
 </h2>
+
+<h2>User settings</h2>
 
 <h2>Other user settings</h2>
 
@@ -184,6 +199,10 @@ if ($files) {
 
         $username = basename($file, '.json');
 
+        if ($username == $_COOKIE['account']) {
+            continue;
+        }
+
         $password = $userData['passwd'] ?? 'Nezadáno';
 
         // Output the result
@@ -197,3 +216,5 @@ if ($files) {
 }
 
 ?>
+
+<script src="/config/config.js"></script>
