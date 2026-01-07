@@ -1,3 +1,12 @@
+<?php
+
+if (!empty($_POST)) {
+    echo "<h3>Received POST data:</h3><pre>";
+    print_r($_POST);
+    echo "</pre><hr>";
+}
+
+?>
 <h1>Configuration panel</h1>
 
 <h2>Panel settings</h2>
@@ -18,81 +27,135 @@ $missingPerson = isset($config['missingPerson']) ? $config['missingPerson'] : "f
 $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 ?>
 
-<h3>Refresh time</h3>
-<p>
-    <i>Time in seconds, how often does data refresh</i><br>
-    current value: <input type="text" readonly class="disabled" value="<?php echo $refreshTime ?>">
-</p>
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="refreshTime">Refresh time:</label>
 
- <form action="index.php">
-  <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname"><br><br>
-  <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname"><br><br>
-  <input type="submit" value="Submit">
-</form> 
+        <input type="number" id="refreshTime" name="refreshTime" aria-describedby="refreshHelp"
+            value="<?php echo $refreshTime ?>">
 
-<h3>MHD Url</h3>
-<p>
-    <i>Url to fetch MHD data from</i><br>
-    Supported APIs:<br>
-    <ul>
-        <li><a href="https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards" target="_blank">Golemio Public Departures (v2)</a></li>
-    </ul>
-    current value: <input type="text" readonly class="disabled fullWidthInput" value="<?php echo $mhdUrl ?>">
-</p>
+        <small id="refreshHelp" class="help-text">
+            Time in seconds, how often does data refresh (for example: 10)
+        </small>
+    </div>
 
-<h3>MHD Api key</h3>
-<p>
-    <i>Api key for MHD Url, if required</i><br>
-    current value: <input type="text" readonly class="disabled fullWidthInput" value="<?php echo $mhdApiKey ?>">
-</p>
+    <button type="submit">Save</button>
+</form>
 
-<h3>Station name</h3>
-<p>
-    <i>Set name of station displayed on top of the panel</i><br>
-    current value: <input type="text" readonly class="disabled" value="<?php echo $zastavka ?>">
-</p>
+<hr>
 
-<h3>Enable map</h3>
-<p>
-    <i>If you panel has touch screen, you can enable map button on the footer, where user can see map of stations, trams, busses and other public transport things.</i><br>
-    current value: <input type="text" readonly class="disabled" value="<?php echo $enableMap ?>">
-</p>
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="mhdUrl">MHD Url:</label>
+        <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
+            value="<?php echo isset($config['mhdUrl']) ? $config['mhdUrl'] : '' ?>">
+        <small id="mhdUrlHelp" class="help-text">
+            Url to fetch MHD data from<br>
+            Supported APIs:<br>
+            <ul>
+                <li><a href="https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards"
+                        target="_blank">Golemio Public Departures (v2)</a></li>
+            </ul>
+        </small>
+    </div>
+    <button type="submit">Save</button>
+</form>
 
-<h3>Map url</h3>
-<p>
-    <i>Set url to open when Map button is clicked</i><br>
-    current value: <input type="text" readonly class="disabled fullWidthInput" value="<?php echo $mapUrl ?>">
-</p>
+<hr>
 
-<h3>Missing person</h3>
-<p>
-    <i>If there is missing person marked as "Child or senior in danger", their picture and phone number to police will be displayed on panel. More information is here: <a href="https://aplikace.policie.gov.cz/patrani-osoby/DiteVOhrozeni.aspx" target="_blank¨">https://aplikace.policie.gov.cz/patrani-osoby/DiteVOhrozeni.aspx</a></i><br>
-    current value: <input type="text" readonly class="disabled" value="<?php echo $missingPerson ?>">
-</p>
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="mhdApiKey">MHD Api key:</label>
+        <input type="text" id="mhdApiKey" name="mhdApiKey" aria-describedby="mhdApiKeyHelp" class="fullWidthInput"
+            value="<?php echo isset($config['mhdApiKey']) ? $config['mhdApiKey'] : '' ?>">
+        <small id="mhdApiKeyHelp" class="help-text">Api key for MHD Url, if required</small>
+    </div>
+    <button type="submit">Save</button>
+</form>
 
-<h3>Weather info sources</h3>
-<p>
-    <i>Urls to fetch data about weather from. You can set multiple of them, so if one of them is offline, another one will be used. (Usefull for weather stations, where is posibility that it will be offline sometimes)</i><br>
-    current value: <input type="text" readonly class="disabled" value="TODO">
-    Supported sources:<br>
-    <ul>
-        <li><a href="https://www.meteo-pocasi.cz/" target="_blank">www.meteo-pocasi.cz</a></li>
-        <li>api.open-meteo.com/v1/forecast (more info <a href="https://open-meteo.com/en/docs" target="_blank">here</a>)</li>
-    </ul>
-    current values: 
-    
-    <?php
-if (!empty($weatherSources)) {
-    foreach ($weatherSources as $url) {
-        echo '<input type="text" readonly class="disabled fullWidthInput" value="' . $url . '"><br>';
-    }
-} else {
-    echo "No weather sources found.";
-}
-    ?>
-</p>
+<hr>
+
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="zastavka">Station name:</label>
+        <input type="text" id="zastavka" name="zastavka" aria-describedby="stationNameHelp"
+            value="<?php echo isset($config['zastavka']) ? $config['zastavka'] : '' ?>">
+        <small id="stationNameHelp" class="help-text">Set name of station displayed on top of the panel</small>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="enableMap">Enable map:</label>
+        <input type="hidden" name="enableMap" value="false">
+        <input type="checkbox" id="enableMap" name="enableMap" aria-describedby="enableMapHelp"
+            value="true" <?php echo ($enableMap == 'true') ? 'checked' : '' ?>>
+        <small id="enableMapHelp" class="help-text">If you panel has touch screen, you can enable map button on the
+            footer, where user can see map of stations, trams, busses and other public transport things.</small>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="mapUrl">Map url:</label>
+        <input type="text" id="mapUrl" name="mapUrl" aria-describedby="mapUrlHelp" class="fullWidthInput"
+            value="<?php echo isset($config['mapUrl']) ? $config['mapUrl'] : '' ?>">
+        <small id="mapUrlHelp" class="help-text">Set url to open when Map button is clicked</small>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<form method="POST" action="">
+    <div class="form-group">
+        <label for="missingPerson">Missing person:</label>
+        <input type="hidden" name="missingPerson" value="false">
+        <input type="checkbox" id="missingPerson" name="missingPerson" aria-describedby="missingPersonHelp"
+            value="true" <?php echo ($missingPerson == 'true') ? 'checked' : '' ?>>
+        <small id="missingPersonHelp" class="help-text">If there is missing person marked as "Child or senior in
+            danger", their picture and phone number to police will be displayed on panel. More information is here: <a
+                href="https://aplikace.policie.gov.cz/patrani-osoby/DiteVOhrozeni.aspx"
+                target="_blank">https://aplikace.policie.gov.cz/patrani-osoby/DiteVOhrozeni.aspx</a></small>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+
+<form method="POST" action="">
+    <div class="form-group">
+        <label>Weather info sources:</label>
+        <small class="help-text">Urls to fetch data about weather from. You can set multiple of them, so if one of them
+            is offline, another one will be used. (Usefull for weather stations, where is posibility that it will be
+            offline sometimes)<br>Supported sources:<br>
+            <ul>
+                <li><a href="https://www.meteo-pocasi.cz/" target="_blank">www.meteo-pocasi.cz</a></li>
+                <li>api.open-meteo.com/v1/forecast (more info <a href="https://open-meteo.com/en/docs"
+                        target="_blank">here</a>)</li>
+            </ul>
+        </small>
+        <?php
+        if (!empty($weatherSources)) {
+            foreach ($weatherSources as $url) {
+                echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . $url . '"><br>';
+            }
+        } else {
+            echo '<input type="text" name="weatherSources[]" class="fullWidthInput" placeholder="Add URL"><br>';
+        }
+        ?>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+</h2>
 
 <h2>Other user settings</h2>
 
@@ -108,26 +171,26 @@ $files = glob($folderPath . '*.json');
 
 if ($files) {
     echo "<ul>";
-    
+
     foreach ($files as $file) {
         $jsonContent = file_get_contents($file);
-        
+
         $userData = json_decode($jsonContent, true);
-        
+
         // Skip if JSON is invalid
         if ($userData === null) {
-            continue; 
+            continue;
         }
 
         $username = basename($file, '.json');
-        
+
         $password = $userData['passwd'] ?? 'Nezadáno';
 
         // Output the result
-        echo "<li><strong>Username:</strong> " . htmlspecialchars($username) . 
-             " | <strong>Password hash:</strong> " . htmlspecialchars($password) . "</li>";
+        echo "<li><strong>Username:</strong> " . htmlspecialchars($username) .
+            " | <strong>Password hash:</strong> " . htmlspecialchars($password) . "</li>";
     }
-    
+
     echo "</ul>";
 } else {
     echo "No users found. How did you evet got here, when you had to login as some user to see this?";
