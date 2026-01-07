@@ -4,6 +4,19 @@ if (!empty($_POST)) {
     echo "<h3>DEBUG: Received POST data:</h3><pre>";
     print_r($_POST);
     echo "</pre><hr>";
+
+    $configFile = $_SERVER['DOCUMENT_ROOT'] . "/config.json";
+    $configData = json_decode(file_get_contents($configFile), true);
+
+    foreach ($_POST as $key => $value) {
+        if ($key === 'weatherSources') {
+            $configData['weatherUrl'] = $value;
+        } else {
+            $configData[$key] = $value;
+        }
+    }
+
+    file_put_contents($configFile, json_encode($configData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 }
 
 ?>
