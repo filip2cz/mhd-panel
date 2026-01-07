@@ -55,8 +55,8 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <small id="mhdUrlHelp" class="help-text">
             Url to fetch MHD data from<br><br>
 
-        <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mhdUrl']) ? $config['mhdUrl'] : '' ?>"><br><br>
+            <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
+                value="<?php echo isset($config['mhdUrl']) ? $config['mhdUrl'] : '' ?>"><br><br>
 
             Supported APIs:<br>
             <ul>
@@ -73,9 +73,13 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 <form method="POST" action="">
     <div class="form-group">
         <label for="mhdApiKey">MHD Api key:</label>
+        <small id="mhdApiKeyHelp" class="help-text">Api key for MHD Url, if required</small>
+        <br><br>
+
         <input type="text" id="mhdApiKey" name="mhdApiKey" aria-describedby="mhdApiKeyHelp" class="fullWidthInput"
             value="<?php echo isset($config['mhdApiKey']) ? $config['mhdApiKey'] : '' ?>">
-        <small id="mhdApiKeyHelp" class="help-text">Api key for MHD Url, if required</small>
+
+        <br><br>
     </div>
     <button type="submit">Save</button>
 </form>
@@ -85,9 +89,14 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 <form method="POST" action="">
     <div class="form-group">
         <label for="zastavka">Station name:</label>
+        <small id="stationNameHelp" class="help-text">Set name of station displayed on top of the panel</small>
+
+        <br><br>
+
         <input type="text" id="zastavka" name="zastavka" aria-describedby="stationNameHelp"
             value="<?php echo isset($config['zastavka']) ? $config['zastavka'] : '' ?>">
-        <small id="stationNameHelp" class="help-text">Set name of station displayed on top of the panel</small>
+
+        <br><br>
     </div>
     <button type="submit">Save</button>
 </form>
@@ -97,12 +106,15 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 <form method="POST" action="">
     <div class="form-group">
         <label for="enableMap">Enable map:</label>
-        <input type="hidden" name="enableMap" value="false">
-        <input type="checkbox" id="enableMap" name="enableMap" aria-describedby="enableMapHelp"
-            value="true" <?php echo ($enableMap == 'true') ? 'checked' : '' ?>>
         <small id="enableMapHelp" class="help-text">If you panel has touch screen, you can enable map button on the
             footer, where user can see map of stations, trams, busses and other public transport things.</small>
+
+        <br><br>
+
+        <input type="hidden" name="enableMap" value="false">
+        <input type="checkbox" id="enableMap" name="enableMap" aria-describedby="enableMapHelp" value="true" <?php echo ($enableMap == 'true') ? 'checked' : '' ?>>
     </div>
+    <br>
     <button type="submit">Save</button>
 </form>
 
@@ -111,10 +123,15 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 <form method="POST" action="">
     <div class="form-group">
         <label for="mapUrl">Map url:</label>
+        <small id="mapUrlHelp" class="help-text">Set url to open when Map button is clicked</small>
+
+        <br><br>
+
         <input type="text" id="mapUrl" name="mapUrl" aria-describedby="mapUrlHelp" class="fullWidthInput"
             value="<?php echo isset($config['mapUrl']) ? $config['mapUrl'] : '' ?>">
-        <small id="mapUrlHelp" class="help-text">Set url to open when Map button is clicked</small>
+
     </div>
+    <br>
     <button type="submit">Save</button>
 </form>
 
@@ -123,14 +140,23 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 <form method="POST" action="">
     <div class="form-group">
         <label for="missingPerson">Missing person:</label>
-        <input type="hidden" name="missingPerson" value="false">
-        <input type="checkbox" id="missingPerson" name="missingPerson" aria-describedby="missingPersonHelp"
-            value="true" <?php echo ($missingPerson == 'true') ? 'checked' : '' ?>>
+
         <small id="missingPersonHelp" class="help-text">If there is missing person marked as "Child or senior in
             danger", their picture and phone number to police will be displayed on panel. More information is here: <a
                 href="https://aplikace.policie.gov.cz/patrani-osoby/DiteVOhrozeni.aspx"
-                target="_blank">https://aplikace.policie.gov.cz/patrani-osoby/DiteVOhrozeni.aspx</a></small>
+                target="_blank">https://aplikace.policie.gov.cz/patrani-osoby/DiteVOhrozeni.aspx
+            </a>
+        </small>
+
+        <br><br>
+
+        <input type="hidden" name="missingPerson" value="false">
+        <input type="checkbox" id="missingPerson" name="missingPerson" aria-describedby="missingPersonHelp" value="true"
+            <?php echo ($missingPerson == 'true') ? 'checked' : '' ?>>
     </div>
+
+    <br>
+
     <button type="submit">Save</button>
 </form>
 
@@ -141,7 +167,9 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <label>Weather info sources:</label>
         <small class="help-text">Urls to fetch data about weather from. You can set multiple of them, so if one of them
             is offline, another one will be used. (Usefull for weather stations, where is posibility that it will be
-            offline sometimes)<br>Supported sources:<br>
+            offline sometimes)<br><br>
+
+            Supported sources:
             <ul>
                 <li><a href="https://www.meteo-pocasi.cz/" target="_blank">www.meteo-pocasi.cz</a></li>
                 <li>api.open-meteo.com/v1/forecast (more info <a href="https://open-meteo.com/en/docs"
