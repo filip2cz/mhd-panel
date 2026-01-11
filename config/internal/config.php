@@ -10,9 +10,15 @@ if (!empty($_POST)) {
 
     foreach ($_POST as $key => $value) {
         if ($key === 'weatherSources') {
-            $configData['weatherUrl'] = $value;
+            $configData['weatherUrl'] = array_map('strip_tags', $value);
+        } elseif ($key === 'refreshTime') {
+            if (is_numeric($value)) {
+                $configData[$key] = (int)$value;
+            }
+        } elseif ($key === 'enableMap' || $key === 'missingPerson') {
+            $configData[$key] = ($value === 'true') ? 'true' : 'false';
         } else {
-            $configData[$key] = $value;
+            $configData[$key] = strip_tags($value);
         }
     }
 
@@ -52,7 +58,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="number" id="refreshTime" name="refreshTime" aria-describedby="refreshHelp"
-            value="<?php echo $refreshTime ?>">
+            value="<?php echo htmlspecialchars($refreshTime) ?>" min="1">
     </div>
 
     <br>
@@ -69,7 +75,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             Url to fetch MHD data from<br><br>
 
             <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
-                value="<?php echo isset($config['mhdUrl']) ? $config['mhdUrl'] : '' ?>"><br><br>
+                value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>"><br><br>
 
             Supported APIs:<br>
             <ul>
@@ -90,7 +96,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="text" id="mhdApiKey" name="mhdApiKey" aria-describedby="mhdApiKeyHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mhdApiKey']) ? $config['mhdApiKey'] : '' ?>">
+            value="<?php echo isset($config['mhdApiKey']) ? htmlspecialchars($config['mhdApiKey']) : '' ?>">
 
         <br><br>
     </div>
@@ -107,7 +113,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="text" id="zastavka" name="zastavka" aria-describedby="stationNameHelp"
-            value="<?php echo isset($config['zastavka']) ? $config['zastavka'] : '' ?>">
+            value="<?php echo isset($config['zastavka']) ? htmlspecialchars($config['zastavka']) : '' ?>">
 
         <br><br>
     </div>
@@ -141,7 +147,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="text" id="mapUrl" name="mapUrl" aria-describedby="mapUrlHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mapUrl']) ? $config['mapUrl'] : '' ?>">
+            value="<?php echo isset($config['mapUrl']) ? htmlspecialchars($config['mapUrl']) : '' ?>">
 
     </div>
     <br>
@@ -194,7 +200,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             if (!empty($weatherSources)) {
                 foreach ($weatherSources as $url) {
                     echo '<div style="display: flex; gap: 5px; margin-bottom: 5px;">';
-                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . $url . '" style="flex-grow: 1;">';
+                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . htmlspecialchars($url) . '" style="flex-grow: 1;">';
                     echo '<button type="button" onclick="moveUp(this)">↑</button>';
                     echo '<button type="button" onclick="moveDown(this)">↓</button>';
                     echo '<button type="button" onclick="this.parentElement.remove()">Remove</button>';

@@ -24,3 +24,27 @@ function moveDown(btn) {
         row.parentElement.insertBefore(next, row);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("form").forEach(form => {
+        form.addEventListener("submit", function (e) {
+            const inputs = form.querySelectorAll("input");
+            for (let input of inputs) {
+                // Validace refreshTime
+                if (input.name === 'refreshTime' && (input.value === "" || isNaN(input.value) || Number(input.value) < 1)) {
+                    alert("Čas obnovení musí být číslo větší nebo rovno 1.");
+                    input.focus();
+                    e.preventDefault();
+                    return;
+                }
+                // Ochrana proti XSS (zakázání < a >)
+                if (input.type === 'text' && /[<>]/.test(input.value)) {
+                    alert("Vstup nesmí obsahovat znaky < nebo >.");
+                    input.focus();
+                    e.preventDefault();
+                    return;
+                }
+            }
+        });
+    });
+});
