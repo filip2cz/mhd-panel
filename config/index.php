@@ -1,3 +1,13 @@
+<?php
+/**
+ * Vstupní bod do administračního rozhraní.
+ *
+ * Tento skript ověřuje přihlášení uživatele na základě cookies.
+ * Pokud jsou přihlašovací údaje (jméno a hash hesla) platné a odpovídají
+ * uloženému uživatelskému profilu, načte se konfigurační rozhraní.
+ * V opačném případě je uživatel přesměrován na přihlašovací stránku.
+ */
+?>
 <!DOCTYPE html>
 <html lang='cs' data-bs-theme="dark">
 

@@ -1,6 +1,17 @@
 <?php
 
-// Funkce pro získání dat z API
+/**
+ * Získá aktuální teplotu ze zadané URL adresy.
+ *
+ * Podporuje Open-Meteo API a scraping Meteo-Počasí.
+ * V případě chyby se rekurzivně pokouší o další zdroje definované v globálním poli $weatherSources.
+ *
+ * @param string $url URL adresa zdroje počasí.
+ * @return string|float Aktuální teplota nebo chybová hláška.
+ * @global int $weatherIndex Index aktuálně používaného zdroje počasí.
+ * @global array $weatherSources Pole dostupných URL zdrojů počasí.
+ * @global int $weatherSourcesCount Celkový počet zdrojů.
+ */
 function ziskejTeplotu($url)
 {
     if (preg_match("/api.open-meteo.com/", $url)) {

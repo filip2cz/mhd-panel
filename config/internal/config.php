@@ -1,4 +1,14 @@
 <?php
+/**
+ * Interní logika konfiguračního panelu.
+ *
+ * Tento soubor je načítán uvnitř config/index.php po úspěšném přihlášení.
+ * Zpracovává odeslané formuláře (POST requesty) pro úpravu config.json
+ * a generuje HTML formuláře pro nastavení aplikace.
+ *
+ * @var string $currentUser Uživatelské jméno přihlášeného uživatele.
+ * @var bool $isAdmin Příznak, zda má uživatel administrátorská práva.
+ */
 
 $currentUser = isset($_COOKIE['account']) ? basename($_COOKIE['account']) : '';
 $userFile = dirname(__DIR__) . "/users/" . $currentUser . ".json";

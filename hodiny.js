@@ -1,3 +1,7 @@
+/**
+ * Aktualizuje zobrazený čas na stránce.
+ * Získává aktuální čas v časovém pásmu Europe/Prague, formátuje jej (HH:MM:SS) a vkládá do elementu s ID 'hodiny'.
+ */
 function aktualizujHodiny() {
     const hodinyElement = document.getElementById('hodiny');
 

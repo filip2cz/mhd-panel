@@ -1,4 +1,10 @@
 <?php
+/**
+ * Modul pro zobrazení pátrání po pohřešovaných osobách.
+ *
+ * Kontroluje RSS feed Policie ČR a pokud je vyhlášeno pátrání,
+ * stáhne a zobrazí fotografii pohřešované osoby.
+ */
 if ($GLOBALS['missingPersonActive'] == "true") {
     if ($GLOBALS['missingPersonImgData'] !== false) {
         // Uložení výšky obrázku

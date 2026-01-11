@@ -1,4 +1,14 @@
 <?php
+/**
+ * Správa uživatelských účtů v administraci.
+ *
+ * Tento soubor umožňuje přihlášenému uživateli:
+ * - Změnit své heslo.
+ * - Nahrát profilový obrázek (JPG/PNG).
+ * - Zobrazit seznam ostatních uživatelů (pokud existují).
+ *
+ * Soubor zpracovává POST požadavky pro změnu hesla a upload obrázku.
+ */
 
 if (isset($_POST['oldPassword'])) {
     $currentUser = isset($_COOKIE['account']) ? basename($_COOKIE['account']) : '';

@@ -1,3 +1,13 @@
+<?php
+/**
+ * Patička stránky (footer).
+ *
+ * Zajišťuje zobrazení spodní lišty s teplotou, hodinami a případným odkazem na mapu.
+ * Načítá také JavaScript pro hodiny a PHP modul pro počasí.
+ *
+ * @var string $enableMap Určuje, zda je povoleno zobrazení mapy ("true"/"false").
+ */
+?>
 <script src="hodiny.js"></script>
 
 <footer class="stranka">

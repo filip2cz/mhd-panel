@@ -1,4 +1,14 @@
 <?php
+/**
+ * Stránka pro zobrazení mapy v celoobrazovkovém režimu.
+ *
+ * Načítá URL mapy z konfiguračního souboru a zobrazuje ji v iframe.
+ * Obsahuje meta tag pro automatický návrat na hlavní tabuli po 5 minutách nečinnosti.
+ *
+ * @var string $json Obsah konfiguračního souboru.
+ * @var array $config Načtená konfigurace.
+ * @var string $mapUrl URL adresa mapy.
+ */
 // Načtení obsahu souboru song.json
 $json = file_get_contents('config.json');
 

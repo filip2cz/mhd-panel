@@ -1,3 +1,9 @@
+<?php
+/**
+ * Vstupní bod aplikace (splash screen).
+ * Zobrazuje IP adresu zařízení a po 10 sekundách přesměrovává na hlavní tabuli.
+ */
+?>
 <!DOCTYPE html>
 <html lang='cs' data-bs-theme="dark">
 
