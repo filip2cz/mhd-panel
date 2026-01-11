@@ -12,11 +12,10 @@ if (isset($_POST['oldPassword'])) {
             if ($_POST['newPassword'] === $_POST['confirmPassword']) {
                 $newPassHash = hash('sha256', hash('sha256', $_POST['newPassword']));
                 $userData['passwd'] = $newPassHash;
+                
                 file_put_contents($userFile, json_encode($userData, JSON_PRETTY_PRINT));
-                echo "<script>
-                    alert('Heslo bylo úspěšně změněno.');
-                    window.location.href = 'login.php';
-                </script>";
+
+                header("Location: login.php");
                 exit;
             } else {
                 $msg = "Nová hesla se neshodují.";
@@ -35,7 +34,9 @@ if (isset($_POST['oldPassword'])) {
 
 <h2>User settings</h2>
 
-<?php if (isset($msg)) { echo "<p style='color: $msgType;'>$msg</p>"; } ?>
+<?php if (isset($msg)) {
+    echo "<p style='color: $msgType;'>$msg</p>";
+} ?>
 
 <form method="POST" action="">
     <div class="form-group">
@@ -68,10 +69,12 @@ if (is_dir($folderPath)) {
         echo "<ul>";
         foreach ($files as $file) {
             $userData = json_decode(file_get_contents($file), true);
-            if ($userData === null) continue;
+            if ($userData === null)
+                continue;
 
             $username = basename($file, '.json');
-            if (isset($_COOKIE['account']) && $username == $_COOKIE['account']) continue;
+            if (isset($_COOKIE['account']) && $username == $_COOKIE['account'])
+                continue;
 
             $password = $userData['passwd'] ?? 'Nezadáno';
             echo "<li><strong>Username:</strong> " . htmlspecialchars($username) . " | <strong>Password hash:</strong> " . htmlspecialchars($password) . "</li>";

@@ -13,10 +13,6 @@ if ($currentUser && file_exists($userFile)) {
 
 if (!empty($_POST) && !isset($_POST['oldPassword'])) {
     if ($isAdmin) {
-        echo "<h3>DEBUG: Received POST data:</h3><pre>";
-        print_r($_POST);
-        echo "</pre><hr>";
-
         $configFile = dirname(__DIR__, 2) . "/config.json";
         $configData = json_decode(file_get_contents($configFile), true);
 
@@ -25,7 +21,7 @@ if (!empty($_POST) && !isset($_POST['oldPassword'])) {
                 $configData['weatherUrl'] = array_map('strip_tags', $value);
             } elseif ($key === 'refreshTime') {
                 if (is_numeric($value)) {
-                    $configData[$key] = (int)$value;
+                    $configData[$key] = (int) $value;
                 }
             } elseif ($key === 'enableMap' || $key === 'missingPerson') {
                 $configData[$key] = ($value === 'true') ? 'true' : 'false';
@@ -38,6 +34,9 @@ if (!empty($_POST) && !isset($_POST['oldPassword'])) {
     } else {
         echo "<p style='color: red; font-weight: bold;'>Nemáte oprávnění měnit nastavení.</p>";
     }
+    //"Reloadem stránky po odeslání formuláře nesmí dojít k opakovanému vložení dat"
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit;
 }
 
 ?>
@@ -228,7 +227,8 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             }
             ?>
         </div>
-        <?php if ($isAdmin): ?><button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;">Add URL</button><?php endif; ?>
+        <?php if ($isAdmin): ?><button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;">Add
+                URL</button><?php endif; ?>
     </div>
     <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
