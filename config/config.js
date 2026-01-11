@@ -1,3 +1,9 @@
+function logout() {
+    document.cookie = "account=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "passwd=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    location.reload();
+}
+
 function addWeatherSource() {
     const container = document.getElementById('weatherSourcesContainer');
     const div = document.createElement('div');

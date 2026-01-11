@@ -1,33 +1,50 @@
 <?php
 
-if (!empty($_POST) && !isset($_POST['oldPassword'])) {
-    echo "<h3>DEBUG: Received POST data:</h3><pre>";
-    print_r($_POST);
-    echo "</pre><hr>";
+$currentUser = isset($_COOKIE['account']) ? basename($_COOKIE['account']) : '';
+$userFile = dirname(__DIR__) . "/users/" . $currentUser . ".json";
+$isAdmin = false;
 
-    $configFile = dirname(__DIR__, 2) . "/config.json";
-    $configData = json_decode(file_get_contents($configFile), true);
-
-    foreach ($_POST as $key => $value) {
-        if ($key === 'weatherSources') {
-            $configData['weatherUrl'] = array_map('strip_tags', $value);
-        } elseif ($key === 'refreshTime') {
-            if (is_numeric($value)) {
-                $configData[$key] = (int)$value;
-            }
-        } elseif ($key === 'enableMap' || $key === 'missingPerson') {
-            $configData[$key] = ($value === 'true') ? 'true' : 'false';
-        } else {
-            $configData[$key] = strip_tags($value);
-        }
+if ($currentUser && file_exists($userFile)) {
+    $userData = json_decode(file_get_contents($userFile), true);
+    if (isset($userData['admin']) && $userData['admin'] === "true") {
+        $isAdmin = true;
     }
+}
 
-    file_put_contents($configFile, json_encode($configData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+if (!empty($_POST) && !isset($_POST['oldPassword'])) {
+    if ($isAdmin) {
+        echo "<h3>DEBUG: Received POST data:</h3><pre>";
+        print_r($_POST);
+        echo "</pre><hr>";
+
+        $configFile = dirname(__DIR__, 2) . "/config.json";
+        $configData = json_decode(file_get_contents($configFile), true);
+
+        foreach ($_POST as $key => $value) {
+            if ($key === 'weatherSources') {
+                $configData['weatherUrl'] = array_map('strip_tags', $value);
+            } elseif ($key === 'refreshTime') {
+                if (is_numeric($value)) {
+                    $configData[$key] = (int)$value;
+                }
+            } elseif ($key === 'enableMap' || $key === 'missingPerson') {
+                $configData[$key] = ($value === 'true') ? 'true' : 'false';
+            } else {
+                $configData[$key] = strip_tags($value);
+            }
+        }
+
+        file_put_contents($configFile, json_encode($configData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    } else {
+        echo "<p style='color: red; font-weight: bold;'>Nemáte oprávnění měnit nastavení.</p>";
+    }
 }
 
 ?>
 
 <h1>Configuration panel</h1>
+
+<button type="button" onclick="logout()">Logout</button>
 
 <h2>Panel settings</h2>
 
@@ -63,7 +80,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
     <br>
 
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
@@ -84,7 +101,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             </ul>
         </small>
     </div>
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
@@ -100,7 +117,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
         <br><br>
     </div>
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
@@ -117,7 +134,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
         <br><br>
     </div>
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
@@ -134,7 +151,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <input type="checkbox" id="enableMap" name="enableMap" aria-describedby="enableMapHelp" value="true" <?php echo ($enableMap == 'true') ? 'checked' : '' ?>>
     </div>
     <br>
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
@@ -151,7 +168,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
     </div>
     <br>
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
@@ -176,7 +193,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
     <br>
 
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
@@ -209,9 +226,9 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             }
             ?>
         </div>
-        <button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;">Add URL</button>
+        <button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;" <?php echo $isAdmin ? '' : 'disabled'; ?>>Add URL</button>
     </div>
-    <button type="submit">Save</button>
+    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
 </form>
 
 <hr>
