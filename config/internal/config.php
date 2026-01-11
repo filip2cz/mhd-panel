@@ -31,7 +31,7 @@ $jsonconfig = file_get_contents(dirname(__DIR__, 2) . "/config.json");
 $config = json_decode($jsonconfig, true);
 
 $refreshTime = isset($config['refreshTime']) ? $config['refreshTime'] : 10;
-$mhdUrl = isset($config['mhdUrl']) ? $config['mhdUrl'] . "&limit=$mhdLimit" : "empty";
+$mhdUrl = isset($config['mhdUrl']) ? $config['mhdUrl'] : "empty";
 $mhdApiKey = isset($config['mhdApiKey']) ? $config['mhdApiKey'] : "empty";
 $zastavka = isset($config['zastavka']) ? $config['zastavka'] : "empty";
 $enableMap = isset($config['enableMap']) ? $config['enableMap'] : "false";
