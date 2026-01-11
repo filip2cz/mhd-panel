@@ -54,3 +54,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.getElementById('passwordForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const oldPwd = document.getElementById('oldPassword');
+    const newPwd = document.getElementById('newPassword');
+    const confirmPwd = document.getElementById('confirmPassword');
+
+    async function sha256(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    if(oldPwd.value) oldPwd.value = await sha256(oldPwd.value);
+    if(newPwd.value) newPwd.value = await sha256(newPwd.value);
+    if(confirmPwd.value) confirmPwd.value = await sha256(confirmPwd.value);
+
+    this.submit();
+});
