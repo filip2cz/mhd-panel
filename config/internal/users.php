@@ -16,20 +16,20 @@ if (isset($_POST['oldPassword'])) {
                 file_put_contents($userFile, json_encode($userData, JSON_PRETTY_PRINT));
 
                 echo "<script>
-                    alert('Heslo bylo úspěšně změněno.');
+                    alert('Password successfully changed.');
                     window.location.href = 'login.php';
                 </script>";
                 exit;
             } else {
-                $msg = "Nová hesla se neshodují.";
+                $msg = "New passwords do not match.";
                 $msgType = "red";
             }
         } else {
-            $msg = "Staré heslo není správné.";
+            $msg = "Old password is incorrect.";
             $msgType = "red";
         }
     } else {
-        $msg = "Uživatel nenalezen.";
+        $msg = "User not found.";
         $msgType = "red";
     }
 }
@@ -79,7 +79,7 @@ if (is_dir($folderPath)) {
             if (isset($_COOKIE['account']) && $username == $_COOKIE['account'])
                 continue;
 
-            $password = $userData['passwd'] ?? 'Nezadáno';
+            $password = $userData['passwd'] ?? 'Not set';
             echo "<li><strong>Username:</strong> " . htmlspecialchars($username) . " | <strong>Password hash:</strong> " . htmlspecialchars($password) . "</li>";
         }
         echo "</ul>";
