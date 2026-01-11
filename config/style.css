@@ -1,10 +1,14 @@
 .fullWidthInput {
-    width: 100%;
-    box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
 }
-.disabled {
-    background-color: #D6D3D1;
-}
+
 a {
   color: white
+}
+
+input:disabled {
+  color: black;
+  -webkit-text-fill-color: black;
+  opacity: 1;
 }

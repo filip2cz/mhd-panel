@@ -75,12 +75,12 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="number" id="refreshTime" name="refreshTime" aria-describedby="refreshHelp"
-            value="<?php echo htmlspecialchars($refreshTime) ?>" min="1">
+            value="<?php echo htmlspecialchars($refreshTime) ?>" min="1" <?php echo $isAdmin ? '' : 'disabled'; ?>>
     </div>
 
     <br>
 
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
@@ -92,7 +92,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             Url to fetch MHD data from<br><br>
 
             <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
-                value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>"><br><br>
+                value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>><br><br>
 
             Supported APIs:<br>
             <ul>
@@ -101,7 +101,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             </ul>
         </small>
     </div>
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
@@ -113,11 +113,11 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="text" id="mhdApiKey" name="mhdApiKey" aria-describedby="mhdApiKeyHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mhdApiKey']) ? htmlspecialchars($config['mhdApiKey']) : '' ?>">
+            value="<?php echo isset($config['mhdApiKey']) ? htmlspecialchars($config['mhdApiKey']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
 
         <br><br>
     </div>
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
@@ -130,11 +130,11 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="text" id="zastavka" name="zastavka" aria-describedby="stationNameHelp"
-            value="<?php echo isset($config['zastavka']) ? htmlspecialchars($config['zastavka']) : '' ?>">
+            value="<?php echo isset($config['zastavka']) ? htmlspecialchars($config['zastavka']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
 
         <br><br>
     </div>
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
@@ -148,10 +148,10 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="hidden" name="enableMap" value="false">
-        <input type="checkbox" id="enableMap" name="enableMap" aria-describedby="enableMapHelp" value="true" <?php echo ($enableMap == 'true') ? 'checked' : '' ?>>
+        <input type="checkbox" id="enableMap" name="enableMap" aria-describedby="enableMapHelp" value="true" <?php echo ($enableMap == 'true') ? 'checked' : '' ?> <?php echo $isAdmin ? '' : 'disabled'; ?>>
     </div>
     <br>
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
@@ -164,11 +164,11 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="text" id="mapUrl" name="mapUrl" aria-describedby="mapUrlHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mapUrl']) ? htmlspecialchars($config['mapUrl']) : '' ?>">
+            value="<?php echo isset($config['mapUrl']) ? htmlspecialchars($config['mapUrl']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
 
     </div>
     <br>
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
@@ -188,12 +188,12 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
         <input type="hidden" name="missingPerson" value="false">
         <input type="checkbox" id="missingPerson" name="missingPerson" aria-describedby="missingPersonHelp" value="true"
-            <?php echo ($missingPerson == 'true') ? 'checked' : '' ?>>
+            <?php echo ($missingPerson == 'true') ? 'checked' : '' ?> <?php echo $isAdmin ? '' : 'disabled'; ?>>
     </div>
 
     <br>
 
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
@@ -217,18 +217,20 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             if (!empty($weatherSources)) {
                 foreach ($weatherSources as $url) {
                     echo '<div style="display: flex; gap: 5px; margin-bottom: 5px;">';
-                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . htmlspecialchars($url) . '" style="flex-grow: 1;">';
-                    echo '<button type="button" onclick="moveUp(this)">↑</button>';
-                    echo '<button type="button" onclick="moveDown(this)">↓</button>';
-                    echo '<button type="button" onclick="this.parentElement.remove()">Remove</button>';
+                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . htmlspecialchars($url) . '" style="flex-grow: 1;" ' . ($isAdmin ? '' : 'disabled') . '>';
+                    if ($isAdmin) {
+                        echo '<button type="button" onclick="moveUp(this)">↑</button>';
+                        echo '<button type="button" onclick="moveDown(this)">↓</button>';
+                        echo '<button type="button" onclick="this.parentElement.remove()">Remove</button>';
+                    }
                     echo '</div>';
                 }
             }
             ?>
         </div>
-        <button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;" <?php echo $isAdmin ? '' : 'disabled'; ?>>Add URL</button>
+        <?php if ($isAdmin): ?><button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;">Add URL</button><?php endif; ?>
     </div>
-    <button type="submit" <?php echo $isAdmin ? '' : 'disabled'; ?>>Save</button>
+    <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
