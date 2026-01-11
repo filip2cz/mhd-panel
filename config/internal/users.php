@@ -33,6 +33,40 @@ if (isset($_POST['oldPassword'])) {
         $msgType = "red";
     }
 }
+
+if (isset($_POST['uploadProfilePic'])) {
+    $currentUser = isset($_COOKIE['account']) ? basename($_COOKIE['account']) : '';
+    $usersDir = dirname(__DIR__) . "/users/";
+
+    if ($currentUser && isset($_FILES['profilePic']) && $_FILES['profilePic']['error'] === UPLOAD_ERR_OK) {
+        $imageInfo = getimagesize($_FILES['profilePic']['tmp_name']);
+        if ($imageInfo !== false) {
+            $mime = $imageInfo['mime'];
+            $allowedTypes = ['image/jpeg' => 'jpg', 'image/png' => 'png'];
+
+            if (array_key_exists($mime, $allowedTypes)) {
+                $ext = $allowedTypes[$mime];
+                $targetFile = $usersDir . $currentUser . "." . $ext;
+
+                if (file_exists($usersDir . $currentUser . ".jpg")) unlink($usersDir . $currentUser . ".jpg");
+                if (file_exists($usersDir . $currentUser . ".png")) unlink($usersDir . $currentUser . ".png");
+
+                if (move_uploaded_file($_FILES['profilePic']['tmp_name'], $targetFile)) {
+                    echo "<script>alert('Profile picture updated.'); window.location.href = window.location.href;</script>";
+                    exit;
+                } else {
+                    $msgPic = "Error saving file.";
+                }
+            } else {
+                $msgPic = "Invalid file type. Only JPG and PNG allowed.";
+            }
+        } else {
+            $msgPic = "File is not an image.";
+        }
+    } else {
+        $msgPic = "Upload failed.";
+    }
+}
 ?>
 
 <h2>User settings</h2>
@@ -56,6 +90,33 @@ if (isset($_POST['oldPassword'])) {
     </div>
     <br>
     <button type="submit">Change password</button>
+</form>
+
+<hr>
+
+<h3>Profile picture</h3>
+
+<?php if (isset($msgPic)) { echo "<p style='color: red;'>$msgPic</p>"; } ?>
+
+<?php
+$currentUser = isset($_COOKIE['account']) ? basename($_COOKIE['account']) : '';
+$usersDir = dirname(__DIR__) . "/users/";
+$picPath = "";
+
+if (file_exists($usersDir . $currentUser . ".jpg")) {
+    $picPath = "/config/users/" . $currentUser . ".jpg";
+} elseif (file_exists($usersDir . $currentUser . ".png")) {
+    $picPath = "/config/users/" . $currentUser . ".png";
+}
+
+if ($picPath) {
+    echo "<img src='$picPath?t=" . time() . "' alt='Profile Picture' style='max-width: 150px; max-height: 150px; border-radius: 10px; display: block; margin-bottom: 10px;'>";
+}
+?>
+
+<form method="POST" action="" enctype="multipart/form-data">
+    <input type="file" name="profilePic" accept="image/png, image/jpeg" required>
+    <button type="submit" name="uploadProfilePic">Upload picture</button>
 </form>
 
 <hr>

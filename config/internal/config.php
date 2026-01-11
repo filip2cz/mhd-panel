@@ -11,7 +11,7 @@ if ($currentUser && file_exists($userFile)) {
     }
 }
 
-if (!empty($_POST) && !isset($_POST['oldPassword'])) {
+if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic'])) {
     if ($isAdmin) {
         $configFile = dirname(__DIR__, 2) . "/config.json";
         $configData = json_decode(file_get_contents($configFile), true);
