@@ -5,7 +5,7 @@ if (!empty($_POST)) {
     print_r($_POST);
     echo "</pre><hr>";
 
-    $configFile = $_SERVER['DOCUMENT_ROOT'] . "/config.json";
+    $configFile = dirname(__DIR__, 2) . "/config.json";
     $configData = json_decode(file_get_contents($configFile), true);
 
     foreach ($_POST as $key => $value) {
@@ -26,7 +26,7 @@ if (!empty($_POST)) {
 <h2>Panel settings</h2>
 
 <?php
-$jsonconfig = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/config.json");
+$jsonconfig = file_get_contents(dirname(__DIR__, 2) . "/config.json");
 
 $config = json_decode($jsonconfig, true);
 
