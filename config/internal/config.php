@@ -63,7 +63,7 @@ $missingPerson = isset($config['missingPerson']) ? $config['missingPerson'] : "f
 $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 ?>
 
-<form method="POST" action="">
+<form method="POST">
     <div class="form-group">
         <label for="refreshTime">Refresh time:</label>
 
@@ -84,11 +84,12 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" action="">
+<form method="POST">
     <div class="form-group">
         <label for="mhdUrl">MHD Url:</label>
         <small id="mhdUrlHelp" class="help-text">
             Url to fetch MHD data from<br><br>
+        </small>
 
             <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
                 value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>><br><br>
@@ -98,14 +99,13 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
                 <li><a href="https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards"
                         target="_blank">Golemio Public Departures (v2)</a></li>
             </ul>
-        </small>
     </div>
     <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
 
 <hr>
 
-<form method="POST" action="">
+<form method="POST">
     <div class="form-group">
         <label for="mhdApiKey">MHD Api key:</label>
         <small id="mhdApiKeyHelp" class="help-text">Api key for MHD Url, if required</small>
@@ -121,7 +121,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" action="">
+<form method="POST">
     <div class="form-group">
         <label for="zastavka">Station name:</label>
         <small id="stationNameHelp" class="help-text">Set name of station displayed on top of the panel</small>
@@ -138,7 +138,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" action="" onsubmit="return validateMapSettings()">
+<form method="POST" onsubmit="return validateMapSettings()">
     <div class="form-group">
         <label for="enableMap">Enable map:</label>
         <small id="enableMapHelp" class="help-text">If you panel has touch screen, you can enable map button on the
@@ -155,7 +155,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" action="" onsubmit="return validateMapSettings()">
+<form method="POST" onsubmit="return validateMapSettings()">
     <div class="form-group">
         <label for="mapUrl">Map url:</label>
         <small id="mapUrlHelp" class="help-text">Set url to open when Map button is clicked</small>
@@ -172,7 +172,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" action="">
+<form method="POST">
     <div class="form-group">
         <label for="missingPerson">Missing person:</label>
 
@@ -197,12 +197,13 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" action="">
+<form method="POST">
     <div class="form-group">
         <label>Weather info sources:</label>
         <small class="help-text">Urls to fetch data about weather from. You can set multiple of them, so if one of them
             is offline, another one will be used. (Usefull for weather stations, where is posibility that it will be
             offline sometimes)<br><br>
+        </small>
 
             Supported sources:
             <ul>
@@ -210,7 +211,6 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
                 <li>api.open-meteo.com/v1/forecast (more info <a href="https://open-meteo.com/en/docs"
                         target="_blank">here</a>)</li>
             </ul>
-        </small>
         <div id="weatherSourcesContainer">
             <?php
             if (!empty($weatherSources)) {

@@ -75,7 +75,7 @@ if (isset($_POST['uploadProfilePic'])) {
     echo "<p style='color: $msgType;'>$msg</p>";
 } ?>
 
-<form method="POST" action="" id="passwordForm">
+<form method="POST" id="passwordForm">
     <div class="form-group">
         <label for="oldPassword">Old password:</label>
         <input type="password" id="oldPassword" name="oldPassword" required class="fullWidthInput">
@@ -114,7 +114,7 @@ if ($picPath) {
 }
 ?>
 
-<form method="POST" action="" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data">
     <input type="file" name="profilePic" accept="image/png, image/jpeg" required>
     <button type="submit" name="uploadProfilePic">Upload picture</button>
 </form>
