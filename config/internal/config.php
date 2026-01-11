@@ -1,6 +1,6 @@
 <?php
 
-if (!empty($_POST)) {
+if (!empty($_POST) && !isset($_POST['oldPassword'])) {
     echo "<h3>DEBUG: Received POST data:</h3><pre>";
     print_r($_POST);
     echo "</pre><hr>";
@@ -217,51 +217,6 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 <hr>
 </h2>
 
-<h2>User settings</h2>
-
-<h2>Other user settings</h2>
-
-<?php
-
-$folderPath = 'users/';
-
-if (!is_dir($folderPath)) {
-    die("Error: The directory '$folderPath' does not exist.");
-}
-
-$files = glob($folderPath . '*.json');
-
-if ($files) {
-    echo "<ul>";
-
-    foreach ($files as $file) {
-        $jsonContent = file_get_contents($file);
-
-        $userData = json_decode($jsonContent, true);
-
-        // Skip if JSON is invalid
-        if ($userData === null) {
-            continue;
-        }
-
-        $username = basename($file, '.json');
-
-        if ($username == $_COOKIE['account']) {
-            continue;
-        }
-
-        $password = $userData['passwd'] ?? 'Nezadáno';
-
-        // Output the result
-        echo "<li><strong>Username:</strong> " . htmlspecialchars($username) .
-            " | <strong>Password hash:</strong> " . htmlspecialchars($password) . "</li>";
-    }
-
-    echo "</ul>";
-} else {
-    echo "No users found. How did you evet got here, when you had to login as some user to see this?";
-}
-
-?>
+<?php include 'users.php'; ?>
 
 <script src="/config/config.js"></script>
