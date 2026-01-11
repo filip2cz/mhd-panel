@@ -247,4 +247,4 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 </h2>
 
 <?php include 'users.php'; ?>
-<script src="/config/config.js"></script>
+<script src="config.js"></script>
