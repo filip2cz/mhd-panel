@@ -6,16 +6,19 @@ if (isset($_POST['oldPassword'])) {
 
     if ($currentUser && file_exists($userFile)) {
         $userData = json_decode(file_get_contents($userFile), true);
-        $oldPassHash = hash('sha256', hash('sha256', $_POST['oldPassword']));
+        $oldPassHash = hash('sha256', $_POST['oldPassword']);
 
         if (isset($userData['passwd']) && $userData['passwd'] === $oldPassHash) {
             if ($_POST['newPassword'] === $_POST['confirmPassword']) {
-                $newPassHash = hash('sha256', hash('sha256', $_POST['newPassword']));
+                $newPassHash = hash('sha256', $_POST['newPassword']);
                 $userData['passwd'] = $newPassHash;
                 
                 file_put_contents($userFile, json_encode($userData, JSON_PRETTY_PRINT));
 
-                header("Location: login.php");
+                echo "<script>
+                    alert('Heslo bylo úspěšně změněno.');
+                    window.location.href = 'login.php';
+                </script>";
                 exit;
             } else {
                 $msg = "Nová hesla se neshodují.";
@@ -38,7 +41,7 @@ if (isset($_POST['oldPassword'])) {
     echo "<p style='color: $msgType;'>$msg</p>";
 } ?>
 
-<form method="POST" action="">
+<form method="POST" action="" id="passwordForm">
     <div class="form-group">
         <label for="oldPassword">Old password:</label>
         <input type="password" id="oldPassword" name="oldPassword" required class="fullWidthInput">
@@ -54,6 +57,29 @@ if (isset($_POST['oldPassword'])) {
     <br>
     <button type="submit">Change password</button>
 </form>
+
+<script>
+document.getElementById('passwordForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const oldPwd = document.getElementById('oldPassword');
+    const newPwd = document.getElementById('newPassword');
+    const confirmPwd = document.getElementById('confirmPassword');
+
+    async function sha256(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    if(oldPwd.value) oldPwd.value = await sha256(oldPwd.value);
+    if(newPwd.value) newPwd.value = await sha256(newPwd.value);
+    if(confirmPwd.value) confirmPwd.value = await sha256(confirmPwd.value);
+
+    this.submit();
+});
+</script>
 
 <hr>
 
