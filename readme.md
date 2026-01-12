@@ -26,10 +26,3 @@ po každé takové změně restartovat apache server:
 ## Odkaz na dokumentaci api, co je používáno
 
 https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards
-
-## Web settings
-https://github.com/yudai/gotty
-
-<!-- https://github.com/tsl0922/ttyd -->
-
-gotty --permit-write nano /var/www/html/config.json
