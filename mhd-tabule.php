@@ -103,10 +103,6 @@ $missingPersonActive = "false";
         <pre id="testOutput"></pre>
 
         <script>
-            // Funkce pro přesměrování na jinou stránku při kliknutí kamkoliv
-            document.addEventListener("click", function () {
-                window.location.href = "./mhd-tabule.php";  // Změň na URL, kam chceš přesměrovat
-            });
         </script>
 
         <script>

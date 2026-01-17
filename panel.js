@@ -24,3 +24,8 @@ function refreshPage() {
         })
         .catch(err => console.error("Chyba při načítání stránky:", err));
 }
+
+// Funkce pro přesměrování na jinou stránku při kliknutí kamkoliv
+document.addEventListener("click", function () {
+    window.location.href = "./mhd-tabule.php";
+});
