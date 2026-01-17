@@ -59,6 +59,7 @@ $missingPersonActive = "false";
 <body class="noScroll">
 
     <link rel="stylesheet" type="text/css" href="./main.css">
+    <script src="panel.js"></script>
 
     <!--
     <style>
@@ -81,23 +82,22 @@ $missingPersonActive = "false";
 
         <?php
 
-            if (str_contains($mhdUrl, 'api.golemio.cz/v2/public/departureboards')) {
-                require 'pid-public-departs.php';
-            }
-            else if (str_contains($mhdUrl, 'mpvnet.cz/pid/tab/departures')) {
-                require 'mpvnet.php';
-            }
-        
+        if (str_contains($mhdUrl, 'api.golemio.cz/v2/public/departureboards')) {
+            require 'pid-public-departs.php';
+        } else if (str_contains($mhdUrl, 'mpvnet.cz/pid/tab/departures')) {
+            require 'mpvnet.php';
+        }
+
         ?>
 
         <?php
-            include 'missing-person.php';
+        include 'missing-person.php';
         ?>
 
         <?php
 
-            require 'footer.php';
-        
+        require 'footer.php';
+
         ?>
 
         <pre id="testOutput"></pre>
@@ -117,8 +117,6 @@ $missingPersonActive = "false";
                 );
             }
         </script>
-
-        <script src="panel.js"></script>
 
     </div>
 
