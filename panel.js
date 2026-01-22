@@ -29,3 +29,10 @@ function refreshPage() {
 document.addEventListener("click", function () {
     window.location.href = "./mhd-tabule.php";
 });
+
+// Funkce pro zobrazení informací o počasí
+function weatherInfo() {
+    alert(
+        "Zdroj dat o počasí:\n<?php echo htmlspecialchars($GLOBALS['weatherSources'][$GLOBALS['weatherIndex']]) ?>"
+    );
+}

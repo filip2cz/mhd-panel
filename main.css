@@ -77,6 +77,24 @@ tr:nth-child(even), thead {
 
 .footerText {
     font-size: 170% !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.missingPersonImg {
+    float:right;
+}
+
+.colFixedWidth120 {
+    width: 120px !important;
+}
+
+.colFixedWidth190 {
+    width: 190px !important;
+}
+
+.colAutoWidth {
+    width: auto !important;
 }
 
 #odkaz {

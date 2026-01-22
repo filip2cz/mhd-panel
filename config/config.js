@@ -81,7 +81,7 @@ function validateMapSettings() {
     const mapUrl = document.getElementById('mapUrl');
 
     if (enableMap.checked && mapUrl.value.trim() === "") {
-        alert("URL mapy nesmí být prázdná, pokud je mapa povolena.");
+        alert("Map url cannot be empty, if map is enabled");
         return false;
     }
     return true;

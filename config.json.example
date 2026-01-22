@@ -4,8 +4,8 @@
     "mhdApiKey": "PUT-YOUR-API-KEY-HERE",
     "zastavka": "Karlovo Náměstí",
     "weatherUrl": [
-	"https://www.meteo-pocasi.cz/maps/cz/praha/1616-meteostanice-praha-vinohrady/",
-	"https://www.meteo-pocasi.cz/maps/cz/praha/1165-meteostanice-praha-3/",
+	    "https://www.meteo-pocasi.cz/maps/cz/praha/1616-meteostanice-praha-vinohrady/",
+	    "https://www.meteo-pocasi.cz/maps/cz/praha/1165-meteostanice-praha-3/",
         "https://api.open-meteo.com/v1/forecast?latitude=50.07592732976484&longitude=14.41938993766259&current_weather=true"
     ],
     "enableMap": "true",

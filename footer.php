@@ -11,7 +11,7 @@
 <script src="hodiny.js"></script>
 
 <footer class="stranka">
-    <div style="display: flex; justify-content: space-between;" class="footerText">
+    <div class="footerText">
         <u><span id="teplota" class="vetsiText" onclick="weatherInfo()"> <?php require 'pocasi.php'; ?>
                 °C</span></u>
         <div id="hodiny" class="vetsiText">

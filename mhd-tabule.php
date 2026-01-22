@@ -72,6 +72,7 @@ $missingPersonActive = "false";
     -->
 
     <script>
+        // README: Tato funkce zde musí být takto, protože se do ní vkládají PHP data.
         // Automatická aktualizace každých X sekund
         setInterval(refreshPage, <?php echo htmlspecialchars($refreshTime * 1000); ?>);
     </script>
@@ -103,9 +104,7 @@ $missingPersonActive = "false";
         <pre id="testOutput"></pre>
 
         <script>
-        </script>
-
-        <script>
+            // README: Tato funkce zde musí být takto, protože se do ní vkládají PHP data.
             // Funkce pro zobrazení informací o počasí
             function weatherInfo() {
                 alert(

@@ -52,10 +52,10 @@ if (isset($_COOKIE['maxLetters'])) {
 if (!empty($data)) {
     echo '<table class="output" id="busSchedule">';
     echo '<colgroup>';
-    echo '<col style="width: 120px;">';
-    echo '<col style="width: auto;">';
-    echo '<col style="width: 120px;">';
-    echo '<col style="width: 190px;">';
+    echo '<col class="colFixedWidth120">';
+    echo '<col class="colAutoWidth">';
+    echo '<col class="colFixedWidth120">';
+    echo '<col class="colFixedWidth190">';
     echo '</colgroup>';
     echo '<thead>';
     echo '<tr>';

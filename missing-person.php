@@ -52,7 +52,7 @@ if ($missingPerson == "true") {
             if ($html === false) {
             }
             // Hledání obrázku pomocí regulárního výrazu
-            else if (preg_match('/<div style="float:right;">\s*<img src="(ViewImage\.aspx\?id=[^"]+)"[^>]*>/i', $html, $matches)) {
+            else if (preg_match('/<div class="missingPersonImg">\s*<img src="(ViewImage\.aspx\?id=[^"]+)"[^>]*>/i', $html, $matches)) {
                 $imageSrc = "https://aplikace.policie.gov.cz/patrani-osoby/" . htmlspecialchars($matches[1]);
 
                 // Nastavení kontextu s HTTP hlavičkou Referer
