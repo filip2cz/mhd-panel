@@ -21,7 +21,7 @@ if ($currentUser && file_exists($userFile)) {
     }
 }
 
-if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic']) && !isset($_POST['targetUser']) && !isset($_POST['newUsername'])) {
+if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic']) && !isset($_POST['targetUser']) && !isset($_POST['newUsername']) && !isset($_POST['deleteUser'])) {
     if ($isAdmin) {
         $configFile = dirname(__DIR__, 2) . "/config.json";
         $configData = json_decode(file_get_contents($configFile), true);
@@ -84,6 +84,26 @@ if ($isAdmin && isset($_POST['newUsername']) && isset($_POST['newUserPassword'])
     file_put_contents($newUserFile, json_encode($newUserData, JSON_PRETTY_PRINT));
     echo "<script>alert('User " . htmlspecialchars($newUsername) . " created.'); window.location.href = window.location.href;</script>";
     exit;
+}
+
+if ($isAdmin && isset($_POST['deleteUser'])) {
+    $targetUser = basename($_POST['deleteUser']);
+    $targetFile = dirname(__DIR__) . "/users/" . $targetUser . ".json";
+    $usersDir = dirname(__DIR__) . "/users/";
+
+    if (file_exists($targetFile)) {
+        unlink($targetFile);
+
+        if (file_exists($usersDir . $targetUser . ".jpg")) {
+            unlink($usersDir . $targetUser . ".jpg");
+        }
+        if (file_exists($usersDir . $targetUser . ".png")) {
+            unlink($usersDir . $targetUser . ".png");
+        }
+
+        echo "<script>alert('User " . htmlspecialchars($targetUser) . " deleted.'); window.location.href = window.location.href;</script>";
+        exit;
+    }
 }
 
 ?>
@@ -438,6 +458,10 @@ if ($isAdmin) {
                     <input type="hidden" name="targetUser" value="' . htmlspecialchars($username) . '">
                     <input type="text" name="newOtherPassword" placeholder="New password" required>
                     <button type="submit">Change</button>
+                </form>';
+                echo '<form method="POST" style="display:inline; margin-left: 5px;" onsubmit="return confirm(\'Are you sure you want to delete user ' . htmlspecialchars($username) . '?\');">
+                    <input type="hidden" name="deleteUser" value="' . htmlspecialchars($username) . '">
+                    <button type="submit">Delete</button>
                 </form>';
                 echo "</li>";
             }
