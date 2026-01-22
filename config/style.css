@@ -16,3 +16,17 @@ input:disabled {
 .userlist {
   padding-top: 5px;
 }
+
+.weatherSourceRow {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.flexGrow {
+  flex-grow: 1;
+}
+
+.errorHeading {
+  color: red;
+}

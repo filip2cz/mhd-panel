@@ -7,8 +7,8 @@ function logout() {
 function addWeatherSource() {
     const container = document.getElementById('weatherSourcesContainer');
     const div = document.createElement('div');
-    div.style.cssText = 'display: flex; gap: 5px; margin-bottom: 5px;';
-    div.innerHTML = '<input type="text" name="weatherSources[]" class="fullWidthInput" placeholder="Add URL" style="flex-grow: 1;">' +
+    div.className = 'weatherSourceRow';
+    div.innerHTML = '<input type="text" name="weatherSources[]" class="fullWidthInput flexGrow" placeholder="Add URL">' +
         '<button type="button" onclick="moveUp(this)">↑</button>' +
         '<button type="button" onclick="moveDown(this)">↓</button>' +
         '<button type="button" onclick="this.parentElement.remove()">Remove</button>';

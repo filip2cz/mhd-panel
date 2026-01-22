@@ -298,8 +298,8 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             <?php
             if (!empty($weatherSources)) {
                 foreach ($weatherSources as $url) {
-                    echo '<div style="display: flex; gap: 5px; margin-bottom: 5px;">';
-                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput" value="' . htmlspecialchars($url) . '" style="flex-grow: 1;" ' . ($isAdmin ? '' : 'disabled') . '>';
+                    echo '<div class="weatherSourceRow">';
+                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput flexGrow" value="' . htmlspecialchars($url) . '" ' . ($isAdmin ? '' : 'disabled') . '>';
                     if ($isAdmin) {
                         echo '<button type="button" onclick="moveUp(this)">↑</button>';
                         echo '<button type="button" onclick="moveDown(this)">↓</button>';

@@ -31,7 +31,7 @@
                 if ($account['passwd'] == hash('sha256', $_COOKIE['passwd'])) {
                     require './internal/config.php';
                 } else {
-                    echo '<h1 style="color: red">';
+                    echo '<h1 class="errorHeading">';
                     echo "ERROR: bad password or username";
                     echo '</h1>';
                     echo '<meta http-equiv="refresh" content="5;url=./login.php">';
@@ -41,7 +41,7 @@
                 echo '<meta http-equiv="refresh" content="5;url=./login.php">';
             }
         } else {
-            echo '<h1 style="color: red">';
+            echo '<h1 class="errorHeading">';
             echo "ERROR: bad password or username";
             echo '</h1>';
             echo '<meta http-equiv="refresh" content="5;url=./login.php">';
