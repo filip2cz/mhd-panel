@@ -21,7 +21,7 @@ if ($currentUser && file_exists($userFile)) {
     }
 }
 
-if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic']) && !isset($_POST['targetUser'])) {
+if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic']) && !isset($_POST['targetUser']) && !isset($_POST['newUsername'])) {
     if ($isAdmin) {
         $configFile = dirname(__DIR__, 2) . "/config.json";
         $configData = json_decode(file_get_contents($configFile), true);
@@ -62,6 +62,28 @@ if ($isAdmin && isset($_POST['targetUser']) && isset($_POST['newOtherPassword'])
         echo "<script>alert('Password for user " . htmlspecialchars($targetUser) . " changed.'); window.location.href = window.location.href;</script>";
         exit;
     }
+}
+
+if ($isAdmin && isset($_POST['newUsername']) && isset($_POST['newUserPassword'])) {
+    $newUsername = trim(basename($_POST['newUsername']));
+    $newUserFile = dirname(__DIR__) . "/users/" . $newUsername . ".json";
+
+    if ($newUsername === "") {
+        echo "<script>alert('Username cannot be empty.'); window.location.href = window.location.href;</script>";
+        exit;
+    }
+
+    if (file_exists($newUserFile)) {
+        echo "<script>alert('User " . htmlspecialchars($newUsername) . " already exists.'); window.location.href = window.location.href;</script>";
+        exit;
+    }
+
+    // Hash twice: Plaintext -> SHA256 -> SHA256
+    $newPassHash = hash('sha256', hash('sha256', $_POST['newUserPassword']));
+    $newUserData = ['passwd' => $newPassHash, 'admin' => 'false'];
+    file_put_contents($newUserFile, json_encode($newUserData, JSON_PRETTY_PRINT));
+    echo "<script>alert('User " . htmlspecialchars($newUsername) . " created.'); window.location.href = window.location.href;</script>";
+    exit;
 }
 
 ?>
@@ -388,7 +410,7 @@ if ($picPath) {
 
 <?php
 if ($isAdmin) {
-?>
+    ?>
 
     <hr>
 
@@ -422,6 +444,17 @@ if ($isAdmin) {
             echo "</ul>";
         }
     }
+    ?>
+
+    <h3>Create new user</h3>
+    <form method="POST" style="margin-bottom: 20px;">
+        <input type="text" name="newUsername" placeholder="Username" required>
+        <input type="password" name="newUserPassword" placeholder="Password" required>
+        <button type="submit">Create</button>
+    </form>
+
+    <?php
 }
 ?>
+
 <script src="config.js"></script>
