@@ -21,7 +21,7 @@ if ($currentUser && file_exists($userFile)) {
     }
 }
 
-if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic'])) {
+if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic']) && !isset($_POST['targetUser'])) {
     if ($isAdmin) {
         $configFile = dirname(__DIR__, 2) . "/config.json";
         $configData = json_decode(file_get_contents($configFile), true);
@@ -47,6 +47,21 @@ if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProf
     //"Reloadem stránky po odeslání formuláře nesmí dojít k opakovanému vložení dat"
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit;
+}
+
+if ($isAdmin && isset($_POST['targetUser']) && isset($_POST['newOtherPassword'])) {
+    $targetUser = basename($_POST['targetUser']);
+    $targetFile = dirname(__DIR__) . "/users/" . $targetUser . ".json";
+
+    if (file_exists($targetFile)) {
+        $targetData = json_decode(file_get_contents($targetFile), true);
+        // Hash twice: Plaintext -> SHA256 -> SHA256
+        $newPassHash = hash('sha256', hash('sha256', $_POST['newOtherPassword']));
+        $targetData['passwd'] = $newPassHash;
+        file_put_contents($targetFile, json_encode($targetData, JSON_PRETTY_PRINT));
+        echo "<script>alert('Password for user " . htmlspecialchars($targetUser) . " changed.'); window.location.href = window.location.href;</script>";
+        exit;
+    }
 }
 
 ?>
@@ -101,14 +116,14 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             Url to fetch MHD data from<br><br>
         </small>
 
-            <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
-                value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>><br><br>
+        <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
+            value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>><br><br>
 
-            Supported APIs:<br>
-            <ul>
-                <li><a href="https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards"
-                        target="_blank">Golemio Public Departures (v2)</a></li>
-            </ul>
+        Supported APIs:<br>
+        <ul>
+            <li><a href="https://api.golemio.cz/pid/docs/openapi/#/%F0%9F%95%92%20Public%20Departures%20(v2)/get_v2_public_departureboards"
+                    target="_blank">Golemio Public Departures (v2)</a></li>
+        </ul>
     </div>
     <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
 </form>
@@ -215,12 +230,12 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             offline sometimes)<br><br>
         </small>
 
-            Supported sources:
-            <ul>
-                <li><a href="https://www.meteo-pocasi.cz/" target="_blank">www.meteo-pocasi.cz</a></li>
-                <li>api.open-meteo.com/v1/forecast (more info <a href="https://open-meteo.com/en/docs"
-                        target="_blank">here</a>)</li>
-            </ul>
+        Supported sources:
+        <ul>
+            <li><a href="https://www.meteo-pocasi.cz/" target="_blank">www.meteo-pocasi.cz</a></li>
+            <li>api.open-meteo.com/v1/forecast (more info <a href="https://open-meteo.com/en/docs"
+                    target="_blank">here</a>)</li>
+        </ul>
         <div id="weatherSourcesContainer">
             <?php
             if (!empty($weatherSources)) {
@@ -260,7 +275,7 @@ if (isset($_POST['oldPassword'])) {
             if ($_POST['newPassword'] === $_POST['confirmPassword']) {
                 $newPassHash = hash('sha256', $_POST['newPassword']);
                 $userData['passwd'] = $newPassHash;
-                
+
                 file_put_contents($userFile, json_encode($userData, JSON_PRETTY_PRINT));
 
                 echo "<script>
@@ -296,8 +311,10 @@ if (isset($_POST['uploadProfilePic'])) {
                 $ext = $allowedTypes[$mime];
                 $targetFile = $usersDir . $currentUser . "." . $ext;
 
-                if (file_exists($usersDir . $currentUser . ".jpg")) unlink($usersDir . $currentUser . ".jpg");
-                if (file_exists($usersDir . $currentUser . ".png")) unlink($usersDir . $currentUser . ".png");
+                if (file_exists($usersDir . $currentUser . ".jpg"))
+                    unlink($usersDir . $currentUser . ".jpg");
+                if (file_exists($usersDir . $currentUser . ".png"))
+                    unlink($usersDir . $currentUser . ".png");
 
                 if (move_uploaded_file($_FILES['profilePic']['tmp_name'], $targetFile)) {
                     echo "<script>alert('Profile picture updated.'); window.location.href = window.location.href;</script>";
@@ -344,7 +361,9 @@ if (isset($_POST['uploadProfilePic'])) {
 
 <h3>Profile picture</h3>
 
-<?php if (isset($msgPic)) { echo "<p style='color: red;'>$msgPic</p>"; } ?>
+<?php if (isset($msgPic)) {
+    echo "<p style='color: red;'>$msgPic</p>";
+} ?>
 
 <?php
 $currentUser = isset($_COOKIE['account']) ? basename($_COOKIE['account']) : '';
@@ -367,31 +386,41 @@ if ($picPath) {
     <button type="submit" name="uploadProfilePic">Upload picture</button>
 </form>
 
-<hr>
-
-<h2>Other user settings</h2>
-
 <?php
+if ($isAdmin) {
+?>
 
-$folderPath = dirname(__DIR__) . '/users/';
+    <hr>
 
-if (is_dir($folderPath)) {
-    $files = glob($folderPath . '*.json');
-    if ($files) {
-        echo "<ul>";
-        foreach ($files as $file) {
-            $userData = json_decode(file_get_contents($file), true);
-            if ($userData === null)
-                continue;
+    <h2>Other user settings</h2>
 
-            $username = basename($file, '.json');
-            if (isset($_COOKIE['account']) && $username == $_COOKIE['account'])
-                continue;
+    <?php
 
-            $password = $userData['passwd'] ?? 'Not set';
-            echo "<li><strong>Username:</strong> " . htmlspecialchars($username) . " | <strong>Password hash:</strong> " . htmlspecialchars($password) . "</li>";
+    $folderPath = dirname(__DIR__) . '/users/';
+
+    if (is_dir($folderPath)) {
+        $files = glob($folderPath . '*.json');
+        if ($files) {
+            echo "<ul>";
+            foreach ($files as $file) {
+                $userData = json_decode(file_get_contents($file), true);
+                if ($userData === null)
+                    continue;
+
+                $username = basename($file, '.json');
+                if (isset($_COOKIE['account']) && $username == $_COOKIE['account'])
+                    continue;
+
+                echo "<li><strong>Username:</strong> " . htmlspecialchars($username) . " | ";
+                echo '<form method="POST" style="display:inline; margin-left: 10px;">
+                    <input type="hidden" name="targetUser" value="' . htmlspecialchars($username) . '">
+                    <input type="text" name="newOtherPassword" placeholder="New password" required>
+                    <button type="submit">Change</button>
+                </form>';
+                echo "</li>";
+            }
+            echo "</ul>";
         }
-        echo "</ul>";
     }
 }
 ?>
