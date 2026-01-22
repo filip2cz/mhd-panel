@@ -433,7 +433,7 @@ if ($isAdmin) {
                 if (isset($_COOKIE['account']) && $username == $_COOKIE['account'])
                     continue;
 
-                echo "<li><strong>Username:</strong> " . htmlspecialchars($username) . " | ";
+                echo "<li class=\"userlist\"><strong>Username:</strong> " . htmlspecialchars($username) . " | ";
                 echo '<form method="POST" style="display:inline; margin-left: 10px;">
                     <input type="hidden" name="targetUser" value="' . htmlspecialchars($username) . '">
                     <input type="text" name="newOtherPassword" placeholder="New password" required>
