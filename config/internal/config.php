@@ -21,7 +21,7 @@ if ($currentUser && file_exists($userFile)) {
     }
 }
 
-if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic']) && !isset($_POST['targetUser']) && !isset($_POST['newUsername']) && !isset($_POST['deleteUser'])) {
+if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProfilePic']) && !isset($_POST['targetUser']) && !isset($_POST['newUsername']) && !isset($_POST['deleteUser']) && !isset($_POST['toggleAdmin'])) {
     if ($isAdmin) {
         $configFile = dirname(__DIR__, 2) . "/config.json";
         $configData = json_decode(file_get_contents($configFile), true);
@@ -102,6 +102,22 @@ if ($isAdmin && isset($_POST['deleteUser'])) {
         }
 
         echo "<script>alert('User " . htmlspecialchars($targetUser) . " deleted.'); window.location.href = window.location.href;</script>";
+        exit;
+    }
+}
+
+if ($isAdmin && isset($_POST['toggleAdmin'])) {
+    $targetUser = basename($_POST['toggleAdmin']);
+    $targetFile = dirname(__DIR__) . "/users/" . $targetUser . ".json";
+
+    if (file_exists($targetFile)) {
+        $targetData = json_decode(file_get_contents($targetFile), true);
+        $isAdminStatus = isset($targetData['admin']) && $targetData['admin'] === 'true';
+        $targetData['admin'] = $isAdminStatus ? 'false' : 'true';
+        
+        file_put_contents($targetFile, json_encode($targetData, JSON_PRETTY_PRINT));
+        $msg = $isAdminStatus ? 'demoted from admin' : 'promoted to admin';
+        echo "<script>alert('User " . htmlspecialchars($targetUser) . " " . $msg . ".'); window.location.href = window.location.href;</script>";
         exit;
     }
 }
@@ -453,11 +469,19 @@ if ($isAdmin) {
                 if (isset($_COOKIE['account']) && $username == $_COOKIE['account'])
                     continue;
 
-                echo "<li class=\"userlist\"><strong>Username:</strong> " . htmlspecialchars($username) . " | ";
+                $isUserAdmin = isset($userData['admin']) && $userData['admin'] === 'true';
+                $adminLabel = $isUserAdmin ? " (Admin)" : "";
+                $adminBtnText = $isUserAdmin ? "Demote" : "Promote";
+
+                echo "<li class=\"userlist\"><strong>Username:</strong> " . htmlspecialchars($username) . $adminLabel . " | ";
                 echo '<form method="POST" style="display:inline; margin-left: 10px;">
                     <input type="hidden" name="targetUser" value="' . htmlspecialchars($username) . '">
                     <input type="text" name="newOtherPassword" placeholder="New password" required>
                     <button type="submit">Change</button>
+                </form>';
+                echo '<form method="POST" style="display:inline; margin-left: 5px;">
+                    <input type="hidden" name="toggleAdmin" value="' . htmlspecialchars($username) . '">
+                    <button type="submit">' . $adminBtnText . '</button>
                 </form>';
                 echo '<form method="POST" style="display:inline; margin-left: 5px;" onsubmit="return confirm(\'Are you sure you want to delete user ' . htmlspecialchars($username) . '?\');">
                     <input type="hidden" name="deleteUser" value="' . htmlspecialchars($username) . '">
