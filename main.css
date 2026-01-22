@@ -106,3 +106,24 @@ tr:nth-child(even), thead {
     height: calc(100vh - 70px);
     border: none;
 }
+
+@media print {
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    footer {
+        display: none !important;
+    }
+
+    tr:nth-child(even), thead {
+        background-color: #eee !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    h1, .nadpis {
+        color: black !important;
+    }
+}
