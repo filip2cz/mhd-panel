@@ -42,7 +42,7 @@ if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProf
 
         file_put_contents($configFile, json_encode($configData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     } else {
-        echo "<p style='color: red; font-weight: bold;'>Nemáte oprávnění měnit nastavení.</p>";
+        echo "<p class='errorTextBold'>Nemáte oprávnění měnit nastavení.</p>";
     }
     //"Reloadem stránky po odeslání formuláře nesmí dojít k opakovanému vložení dat"
     header("Location: " . $_SERVER['REQUEST_URI']);
@@ -310,7 +310,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             }
             ?>
         </div>
-        <?php if ($isAdmin): ?><button type="button" onclick="addWeatherSource()" style="margin-bottom: 10px;">Add
+        <?php if ($isAdmin): ?><button type="button" onclick="addWeatherSource()" class="marginBottom10">Add
                 URL</button><?php endif; ?>
     </div>
     <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
@@ -350,7 +350,7 @@ if (isset($_POST['oldPassword'])) {
         }
     } else {
         $msg = "User not found.";
-        $msgType = "red";
+        $msgClass = "errorText";
     }
 }
 
@@ -394,7 +394,7 @@ if (isset($_POST['uploadProfilePic'])) {
 <h2>User settings</h2>
 
 <?php if (isset($msg)) {
-    echo "<p style='color: $msgType;'>$msg</p>";
+    echo "<p class='$msgClass'>$msg</p>";
 } ?>
 
 <form method="POST" id="passwordForm">
@@ -419,7 +419,7 @@ if (isset($_POST['uploadProfilePic'])) {
 <h3>Profile picture</h3>
 
 <?php if (isset($msgPic)) {
-    echo "<p style='color: red;'>$msgPic</p>";
+    echo "<p class='errorText'>$msgPic</p>";
 } ?>
 
 <?php
@@ -434,7 +434,7 @@ if (file_exists($usersDir . $currentUser . ".jpg")) {
 }
 
 if ($picPath) {
-    echo "<img src='$picPath?t=" . time() . "' alt='Profile Picture' style='max-width: 150px; max-height: 150px; border-radius: 10px; display: block; margin-bottom: 10px;'>";
+    echo "<img src='$picPath?t=" . time() . "' alt='Profile Picture' class='profilePic'>";
 }
 ?>
 
@@ -473,16 +473,16 @@ if ($isAdmin) {
                 $adminBtnText = $isUserAdmin ? "Demote" : "Promote";
 
                 echo "<li class=\"userlist\"><strong>Username:</strong> " . htmlspecialchars($username) . $adminLabel . " | ";
-                echo '<form method="POST" style="display:inline; margin-left: 10px;">
+                echo '<form method="POST" class="inlineFormFirst">
                     <input type="hidden" name="targetUser" value="' . htmlspecialchars($username) . '">
                     <input type="text" name="newOtherPassword" placeholder="New password" required>
                     <button type="submit">Change</button>
                 </form>';
-                echo '<form method="POST" style="display:inline; margin-left: 5px;">
+                echo '<form method="POST" class="inlineForm">
                     <input type="hidden" name="toggleAdmin" value="' . htmlspecialchars($username) . '">
                     <button type="submit">' . $adminBtnText . '</button>
                 </form>';
-                echo '<form method="POST" style="display:inline; margin-left: 5px;" onsubmit="return confirm(\'Are you sure you want to delete user ' . htmlspecialchars($username) . '?\');">
+                echo '<form method="POST" class="inlineForm" onsubmit="return confirm(\'Are you sure you want to delete user ' . htmlspecialchars($username) . '?\');">
                     <input type="hidden" name="deleteUser" value="' . htmlspecialchars($username) . '">
                     <button type="submit">Delete</button>
                 </form>';
@@ -494,7 +494,7 @@ if ($isAdmin) {
     ?>
 
     <h3>Create new user</h3>
-    <form method="POST" style="margin-bottom: 20px;">
+    <form method="POST" class="marginBottom20">
         <input type="text" name="newUsername" placeholder="Username" required>
         <input type="password" name="newUserPassword" placeholder="Password" required>
         <button type="submit">Create</button>

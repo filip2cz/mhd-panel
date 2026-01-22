@@ -30,3 +30,38 @@ input:disabled {
 .errorHeading {
   color: red;
 }
+
+.errorTextBold {
+  color: red;
+  font-weight: bold;
+}
+
+.marginBottom10 {
+  margin-bottom: 10px;
+}
+
+.marginBottom20 {
+  margin-bottom: 20px;
+}
+
+.errorText {
+  color: red;
+}
+
+.profilePic {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.inlineForm {
+  display: inline;
+  margin-left: 5px;
+}
+
+.inlineFormFirst {
+  display: inline;
+  margin-left: 10px;
+}
