@@ -342,12 +342,11 @@ if (isset($_POST['oldPassword'])) {
                 </script>";
                 exit;
             } else {
-                $msg = "New passwords do not match.";
-                $msgType = "red";
+                echo "<script>alert('Password did not change: New passwords do not match.'); window.location.href = window.location.href;</script>";
             }
         } else {
-            $msg = "Old password is incorrect.";
-            $msgType = "red";
+            echo "<script>alert('Password did not change: Old password is incorrect.'); window.location.href = window.location.href;</script>";
+            exit;
         }
     } else {
         $msg = "User not found.";
