@@ -317,7 +317,6 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 </form>
 
 <hr>
-</h2>
 
 <?php
 
