@@ -38,11 +38,16 @@ ini_set('display_errors', 1);
 
         if (empty($weatherSources)) {
             echo "<p>No weather sources defined in configuration.</p>";
-        }
+        } else {
+            $totalSources = count($weatherSources);
+            $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+            if ($page > $totalSources) $page = $totalSources;
 
-        foreach ($weatherSources as $index => $url) {
+            $index = $page - 1;
+            $url = $weatherSources[$index];
+
             echo "<div class='source-card'>";
-            echo "<div><strong>Source #" . ($index + 1) . "</strong></div>";
+            echo "<div><strong>Source #" . ($index + 1) . " of " . $totalSources . "</strong></div>";
             echo "<div class='url'>" . htmlspecialchars($url) . "</div><hr>";
             
             $result = "Unknown source type";
@@ -104,6 +109,16 @@ ini_set('display_errors', 1);
             }
 
             echo "<div>Result: <span class='" . ($isError ? "status-err" : "status-ok") . "'>" . htmlspecialchars($result) . "</span></div>";
+            echo "</div>";
+
+            echo "<div style='text-align: center; margin-top: 20px;'>";
+            if ($page > 1) {
+                echo "<a href='?page=" . ($page - 1) . "' style='margin-right: 15px; color: white; text-decoration: none; border: 1px solid #444; padding: 5px 10px; border-radius: 4px;'>&laquo; Previous</a>";
+            }
+            echo "<span style='margin: 0 10px;'>Page $page / $totalSources</span>";
+            if ($page < $totalSources) {
+                echo "<a href='?page=" . ($page + 1) . "' style='margin-left: 15px; color: white; text-decoration: none; border: 1px solid #444; padding: 5px 10px; border-radius: 4px;'>Next &raquo;</a>";
+            }
             echo "</div>";
         }
         ?>
