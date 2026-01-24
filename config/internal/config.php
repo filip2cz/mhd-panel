@@ -294,6 +294,9 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             <li>api.open-meteo.com/v1/forecast (more info <a href="https://open-meteo.com/en/docs"
                     target="_blank">here</a>)</li>
         </ul>
+
+        <p>Weather Diagnostics: <a href="./pocasi.php" >here</a></p>
+        
         <div id="weatherSourcesContainer">
             <?php
             if (!empty($weatherSources)) {
