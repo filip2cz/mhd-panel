@@ -1,5 +1,54 @@
-.container { padding: 20px; max-width: 800px; margin: 0 auto; }
-.source-card { background: #2b2b2b; margin-bottom: 15px; padding: 15px; border-radius: 8px; border: 1px solid #444; }
-.status-ok { color: #4caf50; font-weight: bold; }
-.status-err { color: #f44336; font-weight: bold; }
-.url { color: #aaa; font-size: 0.9em; word-break: break-all; }
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.source-card {
+    background: #2b2b2b;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.status-ok {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.status-err {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.url {
+    color: #aaa;
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    color: white;
+    text-decoration: none;
+    border: 1px solid #444;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.pagination-btn-prev {
+    margin-right: 15px;
+}
+
+.pagination-btn-next {
+    margin-left: 15px;
+}
+
+.pagination-info {
+    margin: 0 10px;
+}

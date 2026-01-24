@@ -111,13 +111,13 @@ ini_set('display_errors', 1);
             echo "<div>Result: <span class='" . ($isError ? "status-err" : "status-ok") . "'>" . htmlspecialchars($result) . "</span></div>";
             echo "</div>";
 
-            echo "<div style='text-align: center; margin-top: 20px;'>";
+            echo "<div class='pagination'>";
             if ($page > 1) {
-                echo "<a href='?page=" . ($page - 1) . "' style='margin-right: 15px; color: white; text-decoration: none; border: 1px solid #444; padding: 5px 10px; border-radius: 4px;'>&laquo; Previous</a>";
+                echo "<a href='?page=" . ($page - 1) . "' class='pagination-btn pagination-btn-prev'>&laquo; Previous</a>";
             }
-            echo "<span style='margin: 0 10px;'>Page $page / $totalSources</span>";
+            echo "<span class='pagination-info'>Page $page / $totalSources</span>";
             if ($page < $totalSources) {
-                echo "<a href='?page=" . ($page + 1) . "' style='margin-left: 15px; color: white; text-decoration: none; border: 1px solid #444; padding: 5px 10px; border-radius: 4px;'>Next &raquo;</a>";
+                echo "<a href='?page=" . ($page + 1) . "' class='pagination-btn pagination-btn-next'>Next &raquo;</a>";
             }
             echo "</div>";
         }
