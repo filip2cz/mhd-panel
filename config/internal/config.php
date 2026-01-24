@@ -304,7 +304,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
             if (!empty($weatherSources)) {
                 foreach ($weatherSources as $url) {
                     echo '<div class="weatherSourceRow">';
-                    echo '<input type="text" name="weatherSources[]" class="fullWidthInput flexGrow" value="' . htmlspecialchars($url) . '" ' . ($isAdmin ? '' : 'disabled') . '>';
+                    echo '<input type="text" name="weatherSources[]" aria-label="Weather source URL" class="fullWidthInput flexGrow" value="' . htmlspecialchars($url) . '" ' . ($isAdmin ? '' : 'disabled') . '>';
                     if ($isAdmin) {
                         echo '<button type="button" onclick="moveUp(this)">↑</button>';
                         echo '<button type="button" onclick="moveDown(this)">↓</button>';
@@ -443,7 +443,8 @@ if ($picPath) {
 ?>
 
 <form method="POST" enctype="multipart/form-data">
-    <input type="file" name="profilePic" accept="image/png, image/jpeg" required>
+    <label for="profilePic">Select image:</label>
+    <input type="file" id="profilePic" name="profilePic" accept="image/png, image/jpeg" required>
     <button type="submit" name="uploadProfilePic">Upload picture</button>
 </form>
 
@@ -479,7 +480,7 @@ if ($isAdmin) {
                 echo "<li class=\"userlist\"><strong>Username:</strong> " . htmlspecialchars($username) . $adminLabel . " | ";
                 echo '<form method="POST" class="inlineFormFirst">
                     <input type="hidden" name="targetUser" value="' . htmlspecialchars($username) . '">
-                    <input type="text" name="newOtherPassword" placeholder="New password" required>
+                    <input type="text" name="newOtherPassword" placeholder="New password" aria-label="New password" required>
                     <button type="submit">Change</button>
                 </form>';
                 echo '<form method="POST" class="inlineForm">
@@ -499,8 +500,8 @@ if ($isAdmin) {
 
     <h3>Create new user</h3>
     <form method="POST" class="marginBottom20">
-        <input type="text" name="newUsername" placeholder="Username" required>
-        <input type="password" name="newUserPassword" placeholder="Password" required>
+        <input type="text" name="newUsername" placeholder="Username" aria-label="New username" required>
+        <input type="password" name="newUserPassword" placeholder="Password" aria-label="New user password" required>
         <button type="submit">Create</button>
     </form>
 
