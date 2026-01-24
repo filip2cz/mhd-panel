@@ -130,6 +130,8 @@ if ($isAdmin && isset($_POST['toggleAdmin'])) {
 
 <h2>Panel settings</h2>
 
+<p>*: this item is needed for basic functionality of panel</p>
+
 <?php
 $jsonconfig = file_get_contents(dirname(__DIR__, 2) . "/config.json");
 
@@ -148,7 +150,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <form method="POST">
     <div class="form-group">
-        <label for="refreshTime">Refresh time:</label>
+        <label for="refreshTime">Refresh time:*</label>
 
         <small id="refreshHelp" class="help-text">
             Time in seconds, how often does data refresh (for example: 10)
@@ -169,7 +171,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <form method="POST">
     <div class="form-group">
-        <label for="mhdUrl">MHD Url:</label>
+        <label for="mhdUrl">MHD Url:*</label>
         <small id="mhdUrlHelp" class="help-text">
             Url to fetch MHD data from<br><br>
         </small>
@@ -190,7 +192,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <form method="POST">
     <div class="form-group">
-        <label for="mhdApiKey">MHD Api key:</label>
+        <label for="mhdApiKey">MHD Api key:*</label>
         <small id="mhdApiKeyHelp" class="help-text">Api key for MHD Url, if required</small>
         <br><br>
 
