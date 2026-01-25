@@ -65,3 +65,10 @@ input:disabled {
   display: inline;
   margin-left: 10px;
 }
+
+.error-msg {
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-top: 5px;
+    display: none;
+}

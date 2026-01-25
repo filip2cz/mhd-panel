@@ -63,9 +63,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (form.querySelector('#mhdUrl')) {
-                const url = form.querySelector('#mhdUrl').value;
+                const mhdInput = form.querySelector('#mhdUrl');
+                const url = mhdInput.value;
+                const errorDiv = document.getElementById('mhdUrlError');
+                
+                if (errorDiv) errorDiv.style.display = 'none';
+
                 if (!isValidUrl(url)) {
-                    alert('Invalid MHD URL format.');
+                    if (errorDiv) {
+                        const example = mhdInput.getAttribute('data-example');
+                        errorDiv.innerText = 'Invalid MHD URL format. Example: ' + example;
+                        errorDiv.style.display = 'block';
+                    } else {
+                        alert('Invalid MHD URL format.');
+                    }
                     e.preventDefault();
                     return;
                 }
@@ -74,15 +85,29 @@ document.addEventListener("DOMContentLoaded", function () {
             if (form.querySelector('#mapUrl') || form.querySelector('#enableMap')) {
                 const mapUrl = document.getElementById('mapUrl');
                 const enableMap = document.getElementById('enableMap');
+                const errorDiv = document.getElementById('mapUrlError');
+
+                if (errorDiv) errorDiv.style.display = 'none';
 
                 if (enableMap && enableMap.checked && mapUrl && mapUrl.value.trim() === "") {
-                    alert("Map url cannot be empty, if map is enabled");
+                    if (errorDiv) {
+                        errorDiv.innerText = "Map url cannot be empty, if map is enabled";
+                        errorDiv.style.display = 'block';
+                    } else {
+                        alert("Map url cannot be empty, if map is enabled");
+                    }
                     e.preventDefault();
                     return;
                 }
 
                 if (mapUrl && mapUrl.value && !isValidUrl(mapUrl.value)) {
-                    alert('Invalid Map URL format.');
+                    if (errorDiv) {
+                        const example = mapUrl.getAttribute('data-example');
+                        errorDiv.innerText = 'Invalid Map URL format. Example: ' + example;
+                        errorDiv.style.display = 'block';
+                    } else {
+                        alert('Invalid Map URL format.');
+                    }
                     e.preventDefault();
                     return;
                 }

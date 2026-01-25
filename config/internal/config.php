@@ -146,6 +146,15 @@ $mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : "empty";
 $missingPerson = isset($config['missingPerson']) ? $config['missingPerson'] : "false";
 
 $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
+
+$exampleConfigFile = dirname(__DIR__, 2) . "/config.json.example";
+$mhdUrlExample = "";
+$mapUrlExample = "";
+if (file_exists($exampleConfigFile)) {
+    $exConfig = json_decode(file_get_contents($exampleConfigFile), true);
+    $mhdUrlExample = isset($exConfig['mhdUrl']) ? $exConfig['mhdUrl'] : "";
+    $mapUrlExample = isset($exConfig['mapUrl']) ? $exConfig['mapUrl'] : "";
+}
 ?>
 
 <form method="POST">
@@ -177,7 +186,8 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         </small>
 
         <input type="text" id="mhdUrl" name="mhdUrl" aria-describedby="mhdUrlHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>><br><br>
+            value="<?php echo isset($config['mhdUrl']) ? htmlspecialchars($config['mhdUrl']) : '' ?>" data-example="<?php echo htmlspecialchars($mhdUrlExample); ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
+        <div id="mhdUrlError" class="error-msg"></div><br><br>
 
         Supported APIs:<br>
         <ul>
@@ -249,7 +259,8 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <br><br>
 
         <input type="text" id="mapUrl" name="mapUrl" aria-describedby="mapUrlHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mapUrl']) ? htmlspecialchars($config['mapUrl']) : '' ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
+            value="<?php echo isset($config['mapUrl']) ? htmlspecialchars($config['mapUrl']) : '' ?>" data-example="<?php echo htmlspecialchars($mapUrlExample); ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
+        <div id="mapUrlError" class="error-msg"></div>
 
     </div>
     <br>
