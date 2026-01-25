@@ -223,7 +223,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" onsubmit="return validateMapSettings()">
+<form method="POST">
     <div class="form-group">
         <label for="enableMap">Enable map:</label>
         <small id="enableMapHelp" class="help-text">If you panel has touch screen, you can enable map button on the
@@ -241,9 +241,9 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 <hr>
 
-<form method="POST" onsubmit="return validateMapSettings()">
+<form method="POST">
     <div class="form-group">
-        <label for="mapUrl">Map url:</label>
+        <label for="mapUrl">Map Url:</label>
         <small id="mapUrlHelp" class="help-text">Set url to open when Map button is clicked</small>
 
         <br><br>

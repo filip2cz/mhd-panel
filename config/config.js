@@ -61,6 +61,32 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
             }
+
+            if (form.querySelector('#mhdUrl')) {
+                const url = form.querySelector('#mhdUrl').value;
+                if (!isValidUrl(url)) {
+                    alert('Invalid MHD URL format.');
+                    e.preventDefault();
+                    return;
+                }
+            }
+
+            if (form.querySelector('#mapUrl') || form.querySelector('#enableMap')) {
+                const mapUrl = document.getElementById('mapUrl');
+                const enableMap = document.getElementById('enableMap');
+
+                if (enableMap && enableMap.checked && mapUrl && mapUrl.value.trim() === "") {
+                    alert("Map url cannot be empty, if map is enabled");
+                    e.preventDefault();
+                    return;
+                }
+
+                if (mapUrl && mapUrl.value && !isValidUrl(mapUrl.value)) {
+                    alert('Invalid Map URL format.');
+                    e.preventDefault();
+                    return;
+                }
+            }
         });
     });
 
@@ -96,13 +122,12 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
     this.submit();
 });
 
-function validateMapSettings() {
-    const enableMap = document.getElementById('enableMap');
-    const mapUrl = document.getElementById('mapUrl');
 
-    if (enableMap.checked && mapUrl.value.trim() === "") {
-        alert("Map url cannot be empty, if map is enabled");
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
         return false;
     }
-    return true;
 }
