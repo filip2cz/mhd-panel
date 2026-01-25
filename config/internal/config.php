@@ -228,6 +228,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
         <label for="enableMap">Enable map:</label>
         <small id="enableMapHelp" class="help-text">If you panel has touch screen, you can enable map button on the
             footer, where user can see map of stations, trams, busses and other public transport things.</small>
+        <small id="mapUrlHelp" class="help-text">Requires Map url to be set</small>
 
         <br><br>
 
