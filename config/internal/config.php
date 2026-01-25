@@ -417,6 +417,7 @@ if (isset($_POST['uploadProfilePic'])) {
     <div class="form-group">
         <label for="oldPassword">Old password:</label>
         <input type="password" id="oldPassword" name="oldPassword" required class="fullWidthInput">
+        <div id="oldPasswordError" class="error-msg"></div>
         <br><br>
 
         <label for="newPassword">New password:</label>
@@ -425,6 +426,7 @@ if (isset($_POST['uploadProfilePic'])) {
 
         <label for="confirmPassword">Confirm new password:</label>
         <input type="password" id="confirmPassword" name="confirmPassword" required class="fullWidthInput">
+        <div id="newPasswordError" class="error-msg"></div>
     </div>
     <br>
     <button type="submit">Change password</button>

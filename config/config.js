@@ -129,9 +129,15 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById('passwordForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const oldPwd = document.getElementById('oldPassword');
-    const newPwd = document.getElementById('newPassword');
-    const confirmPwd = document.getElementById('confirmPassword');
+    const oldPwdInput = document.getElementById('oldPassword');
+    const newPwdInput = document.getElementById('newPassword');
+    const confirmPwdInput = document.getElementById('confirmPassword');
+
+    const oldPwdError = document.getElementById('oldPasswordError');
+    const newPwdError = document.getElementById('newPasswordError');
+
+    if (oldPwdError) oldPwdError.style.display = 'none';
+    if (newPwdError) newPwdError.style.display = 'none';
 
     async function sha256(message) {
         const msgBuffer = new TextEncoder().encode(message);
@@ -140,9 +146,41 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
-    if (oldPwd.value) oldPwd.value = await sha256(oldPwd.value);
-    if (newPwd.value) newPwd.value = await sha256(newPwd.value);
-    if (confirmPwd.value) confirmPwd.value = await sha256(confirmPwd.value);
+    const oldPwdVal = oldPwdInput.value;
+    const newPwdVal = newPwdInput.value;
+    const confirmPwdVal = confirmPwdInput.value;
+
+    if (newPwdVal !== confirmPwdVal) {
+        if (newPwdError) {
+            newPwdError.innerText = "New passwords do not match.";
+            newPwdError.style.display = 'block';
+        } else {
+            alert("New passwords do not match.");
+        }
+        return;
+    }
+
+    const oldPwdHash = await sha256(oldPwdVal);
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    const currentPassHash = getCookie('passwd');
+
+    if (currentPassHash && oldPwdHash !== currentPassHash) {
+        if (oldPwdError) {
+            oldPwdError.innerText = "Old password is incorrect.";
+            oldPwdError.style.display = 'block';
+        } else {
+            alert("Old password is incorrect.");
+        }
+        return;
+    }
+
+    if (oldPwdInput.value) oldPwdInput.value = oldPwdHash;
+    if (newPwdInput.value) newPwdInput.value = await sha256(newPwdVal);
+    if (confirmPwdInput.value) confirmPwdInput.value = await sha256(confirmPwdVal);
 
     this.submit();
 });
