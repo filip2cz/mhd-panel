@@ -28,7 +28,7 @@
         <label for="passwd">Password:</label><br>
         <input type="password" id="passwd" name="passwd"><br>
         <br>
-        <button type="button" onclick="login()">Login</button>
+        <button type="button" id="loginBtn">Login</button>
 
     </div>
 

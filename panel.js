@@ -26,8 +26,12 @@ function refreshPage() {
 }
 
 // Funkce pro přesměrování na jinou stránku při kliknutí kamkoliv
-document.addEventListener("click", function () {
-    window.location.href = "./mhd-tabule.php";
+document.addEventListener("click", function (e) {
+    if (e.target.closest('#teplota')) {
+        weatherInfo();
+    } else {
+        window.location.href = "./mhd-tabule.php";
+    }
 });
 
 // Funkce pro zobrazení informací o počasí

@@ -126,7 +126,7 @@ if ($isAdmin && isset($_POST['toggleAdmin'])) {
 
 <h1>Configuration panel</h1>
 
-<button type="button" onclick="logout()">Logout</button>
+<button type="button" id="logoutBtn">Logout</button>
 
 <h2>Panel settings</h2>
 
@@ -306,16 +306,16 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
                     echo '<div class="weatherSourceRow">';
                     echo '<input type="text" name="weatherSources[]" aria-label="Weather source URL" class="fullWidthInput flexGrow" value="' . htmlspecialchars($url) . '" ' . ($isAdmin ? '' : 'disabled') . '>';
                     if ($isAdmin) {
-                        echo '<button type="button" onclick="moveUp(this)">↑</button>';
-                        echo '<button type="button" onclick="moveDown(this)">↓</button>';
-                        echo '<button type="button" onclick="this.parentElement.remove()">Remove</button>';
+                        echo '<button type="button" class="moveUpBtn">↑</button>';
+                        echo '<button type="button" class="moveDownBtn">↓</button>';
+                        echo '<button type="button" class="removeBtn">Remove</button>';
                     }
                     echo '</div>';
                 }
             }
             ?>
         </div>
-        <?php if ($isAdmin): ?><button type="button" onclick="addWeatherSource()" class="marginBottom10">Add
+        <?php if ($isAdmin): ?><button type="button" id="addWeatherSourceBtn" class="marginBottom10">Add
                 URL</button><?php endif; ?>
     </div>
     <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>

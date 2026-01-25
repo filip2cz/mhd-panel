@@ -12,7 +12,7 @@
 
 <footer class="stranka">
     <div class="footerText">
-        <u><span id="teplota" class="vetsiText" onclick="weatherInfo()"> <?php require 'pocasi.php'; ?>
+        <u><span id="teplota" class="vetsiText"> <?php require 'pocasi.php'; ?>
                 °C</span></u>
         <div id="hodiny" class="vetsiText">
             <?php

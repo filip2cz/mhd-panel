@@ -31,3 +31,7 @@ async function hashString(inputString) {
 
     return hashHex;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('loginBtn').addEventListener('click', login);
+});

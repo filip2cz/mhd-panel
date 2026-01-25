@@ -9,9 +9,9 @@ function addWeatherSource() {
     const div = document.createElement('div');
     div.className = 'weatherSourceRow';
     div.innerHTML = '<input type="text" name="weatherSources[]" class="fullWidthInput flexGrow" placeholder="Add URL">' +
-        '<button type="button" onclick="moveUp(this)">↑</button>' +
-        '<button type="button" onclick="moveDown(this)">↓</button>' +
-        '<button type="button" onclick="this.parentElement.remove()">Remove</button>';
+        '<button type="button" class="moveUpBtn">↑</button>' +
+        '<button type="button" class="moveDownBtn">↓</button>' +
+        '<button type="button" class="removeBtn">Remove</button>';
     container.appendChild(div);
 }
 
@@ -30,6 +30,16 @@ function moveDown(btn) {
         row.parentElement.insertBefore(next, row);
     }
 }
+
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains('moveUpBtn')) {
+        moveUp(e.target);
+    } else if (e.target.classList.contains('moveDownBtn')) {
+        moveDown(e.target);
+    } else if (e.target.classList.contains('removeBtn')) {
+        e.target.parentElement.remove();
+    }
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("form").forEach(form => {
@@ -53,6 +63,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+    }
+
+    const addWeatherSourceBtn = document.getElementById('addWeatherSourceBtn');
+    if (addWeatherSourceBtn) {
+        addWeatherSourceBtn.addEventListener('click', addWeatherSource);
+    }
 });
 
 document.getElementById('passwordForm').addEventListener('submit', async function (e) {
