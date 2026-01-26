@@ -514,8 +514,10 @@ if ($isAdmin) {
 
     <h3>Create new user</h3>
     <form method="POST" class="marginBottom20">
-        <input type="text" name="newUsername" placeholder="Username" aria-label="New username" required>
-        <input type="password" name="newUserPassword" placeholder="Password" aria-label="New user password" required>
+        <label for="newUsername">Username:</label>
+        <input type="text" id="newUsername" name="newUsername" placeholder="Username" aria-label="New username" required>
+        <label for="newUserPassword">Password:</label>
+        <input type="password" id="newUserPassword" name="newUserPassword" placeholder="Password" aria-label="New user password" required>
         <button type="submit">Create</button>
     </form>
 
