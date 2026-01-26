@@ -494,7 +494,8 @@ if ($isAdmin) {
                 echo "<li class=\"userlist\"><strong>Username:</strong> " . htmlspecialchars($username) . $adminLabel . " | ";
                 echo '<form method="POST" class="inlineFormFirst">
                     <input type="hidden" name="targetUser" value="' . htmlspecialchars($username) . '">
-                    <input type="text" name="newOtherPassword" placeholder="New password" aria-label="New password" required>
+                    <label for="newOtherPassword_' . htmlspecialchars($username) . '">New password: </label>
+                    <input type="text" id="newOtherPassword_' . htmlspecialchars($username) . '" name="newOtherPassword" placeholder="New password" aria-label="New password" required>
                     <button type="submit">Change</button>
                 </form>';
                 echo '<form method="POST" class="inlineForm">
