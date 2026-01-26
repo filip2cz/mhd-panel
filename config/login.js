@@ -6,13 +6,23 @@
 async function login() {
     const username = document.getElementById('username').value;
     const passwd = document.getElementById('passwd').value;
+    const errorMsg = document.getElementById('errorMsg');
+
+    if (errorMsg) errorMsg.innerText = "";
 
     const hashedPassword = await hashString(passwd);
 
     document.cookie = "account=" + username + "; path=/";
     document.cookie = "passwd=" + hashedPassword + "; path=/";
 
-    window.location.replace("./");
+    const response = await fetch("./");
+    const text = await response.text();
+
+    if (text.includes("ERROR: bad password or username") || text.includes("error: no password set")) {
+        if (errorMsg) errorMsg.innerText = "Incorrect username or password.";
+    } else {
+        window.location.replace("./");
+    }
 }
 
 /**

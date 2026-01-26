@@ -17,6 +17,7 @@
 <body>
 
     <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
 
     <div class="stranka">
 
@@ -29,6 +30,7 @@
         <input type="password" id="passwd" name="passwd"><br>
         <br>
         <button type="button" id="loginBtn">Login</button>
+        <p id="errorMsg"></p>
 
     </div>
 
