@@ -37,6 +37,8 @@ $missingPerson = isset($config['missingPerson']) ? $config['missingPerson'] : "f
 $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 $weatherSourcesCount = count($weatherSources);
 
+$batteryStatus = isset($config['batteryStatus']) ? $config['batteryStatus'] : "false";
+
 // Pomocné proměnné
 $weatherIndex = 0;
 $missingPersonImgData;

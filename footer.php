@@ -26,6 +26,11 @@
             echo "$cas";
             ?>
         </div>
+
+        <?php if ($batteryStatus == "true"):
+            include 'battery.php';
+        endif; ?>
+
         <?php if ($enableMap == "true"): ?>
             <a href="mhd-mapa.php" id="odkaz" class="vetsiText">Mapa</a>
         <?php endif; ?>

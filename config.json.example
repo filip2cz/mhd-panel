@@ -10,5 +10,6 @@
     ],
     "enableMap": "true",
     "mapUrl": "https://mapa.pid.cz/?filter=&zoom=17.0&lon=14.4202&lat=50.0755",
-    "missingPerson": "false"
+    "missingPerson": "false",
+    "batteryStatus": "false"
 }
