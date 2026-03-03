@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vstupní bod aplikace (splash screen).
  * Zobrazuje IP adresu zařízení a po 10 sekundách přesměrovává na hlavní tabuli.
@@ -17,19 +18,21 @@
 
     <link rel="stylesheet" type="text/css" href="./main.css">
 
-        <h1>Device info</h1>
+    <h1>Device info</h1>
 
-        <p>Local IP adress:
+    <p>Local IP adress:
 
-            <?php
-            // Získání lokální IP adresy serveru
-            $local_ip = shell_exec("hostname -I");
+        <?php
+        // Získání lokální IP adresy serveru
+        $local_ip = shell_exec("hostname -I");
 
-            // Vypsání IP adresy na stránku
-            echo $local_ip;
-            ?>
+        // Vypsání IP adresy na stránku
+        echo $local_ip;
+        ?>
 
-        </p>
+    </p>
+
+    <script src="panel.js"></script>
 
 </body>
 
