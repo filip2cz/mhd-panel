@@ -1,6 +1,6 @@
 <span class="vetsiText">
-    Baterie:
     <?php
+        echo $batteryText;
         $battery = file_get_contents('battery');
         echo $battery;
     ?>%

@@ -38,6 +38,7 @@ $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 $weatherSourcesCount = count($weatherSources);
 
 $batteryStatus = isset($config['batteryStatus']) ? $config['batteryStatus'] : "false";
+$batteryText = isset($config['batteryText']) ? $config['batteryText'] : "Baterie:";
 
 // Pomocné proměnné
 $weatherIndex = 0;
