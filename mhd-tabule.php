@@ -63,6 +63,7 @@ $missingPersonActive = "false";
 
     <link rel="stylesheet" type="text/css" href="./main.css">
     <script src="panel.js"></script>
+    <script src="setWindowsSizeCookie.js"></script>
 
     <!--
     <style>

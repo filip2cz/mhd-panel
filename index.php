@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10; url=mhd-tabule.php">
+    <meta http-equiv="refresh" content="10; url=connectionCheck.php">
     <title>Přesměrování...</title>
 </head>
 
@@ -20,7 +20,8 @@
 
     <h1>Device info</h1>
 
-    <p>Local IP adress:
+    <p>
+        Local IP adress:
 
         <?php
         // Získání lokální IP adresy serveru
@@ -29,10 +30,9 @@
         // Vypsání IP adresy na stránku
         echo $local_ip;
         ?>
-
     </p>
 
-    <script src="panel.js"></script>
+    <script src="setWindowsSizeCookie.js"></script>
 
 </body>
 
