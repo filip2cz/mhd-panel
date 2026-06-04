@@ -64,6 +64,11 @@ function ziskejTeplotu($url)
                 throw new Exception(curl_error($ch));
             }
 
+            // Ověření prázdné odpovědi
+            if (empty(trim($response))) {
+                throw new Exception("Prázdná odpověď ze serveru");
+            }
+
             // Zavření cURL
             curl_close($ch);
 
