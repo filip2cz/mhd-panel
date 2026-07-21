@@ -15,7 +15,6 @@ $buttonUrl = isset($config['buttonUrl']) ? $config['buttonUrl'] : 0;
     <title>MHD Mapa</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <meta charset='utf-8'>
-    <meta http-equiv="refresh" content="300; url=mhd-tabule.php">
 </head>
 
 <body class="noScroll">
