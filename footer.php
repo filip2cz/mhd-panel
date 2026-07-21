@@ -22,7 +22,7 @@
         endif; ?>
 
         <?php if ($enableButton == "true"): ?>
-            <a href="mhd-button.php" id="odkaz" class="vetsiText">Mapa</a>
+            <a href="mhd-button.php" id="odkaz" class="vetsiText"><?php echo htmlspecialchars($buttonText); ?></a>
         <?php endif; ?>
     </div>
 </footer>

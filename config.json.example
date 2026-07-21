@@ -10,6 +10,7 @@
     ],
     "enableButton": "true",
     "buttonUrl": "https://mapa.pid.cz/?filter=&zoom=17.0&lon=14.4202&lat=50.0755",
+    "buttonText": "Mapa",
     "missingPerson": "false",
     "batteryStatus": "false",
     "batteryText": "Baterie: "

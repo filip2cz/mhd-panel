@@ -19,7 +19,10 @@ $refreshTime = isset($config['refreshTime']) ? $config['refreshTime'] : 10;
 $mhdUrl = isset($config['mhdUrl']) ? $config['mhdUrl'] . "&limit=$mhdLimit" : 0;
 $mhdApiKey = isset($config['mhdApiKey']) ? $config['mhdApiKey'] : 0;
 $zastavka = isset($config['zastavka']) ? $config['zastavka'] : 0;
-$enableButton = isset($config['enableButton']) ? $config['enableButton'] : 0;
+
+$enableButton = isset($config['enableButton']) ? $config['enableButton'] : "false";
+$buttonText = isset($config['buttonText']) ? $config['buttonText'] : "Mapa";
+
 $missingPerson = isset($config['missingPerson']) ? $config['missingPerson'] : "false";
 
 $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
