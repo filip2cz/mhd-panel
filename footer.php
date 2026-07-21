@@ -1,13 +1,3 @@
-<?php
-/**
- * Patička stránky (footer).
- *
- * Zajišťuje zobrazení spodní lišty s teplotou, hodinami a případným odkazem na mapu.
- * Načítá také JavaScript pro hodiny a PHP modul pro počasí.
- *
- * @var string $enableMap Určuje, zda je povoleno zobrazení mapy ("true"/"false").
- */
-?>
 <script src="hodiny.js"></script>
 
 <footer class="stranka">
@@ -31,8 +21,8 @@
             include 'battery.php';
         endif; ?>
 
-        <?php if ($enableMap == "true"): ?>
-            <a href="mhd-mapa.php" id="odkaz" class="vetsiText">Mapa</a>
+        <?php if ($enableButton == "true"): ?>
+            <a href="mhd-button.php" id="odkaz" class="vetsiText">Mapa</a>
         <?php endif; ?>
     </div>
 </footer>

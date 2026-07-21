@@ -8,8 +8,8 @@
 	    "https://www.meteo-pocasi.cz/maps/cz/praha/1165-meteostanice-praha-3/",
         "https://api.open-meteo.com/v1/forecast?latitude=50.07592732976484&longitude=14.41938993766259&current_weather=true"
     ],
-    "enableMap": "true",
-    "mapUrl": "https://mapa.pid.cz/?filter=&zoom=17.0&lon=14.4202&lat=50.0755",
+    "enableButton": "true",
+    "buttonUrl": "https://mapa.pid.cz/?filter=&zoom=17.0&lon=14.4202&lat=50.0755",
     "missingPerson": "false",
     "batteryStatus": "false",
     "batteryText": "Baterie: "

@@ -1,22 +1,11 @@
 <?php
-/**
- * Stránka pro zobrazení mapy v celoobrazovkovém režimu.
- *
- * Načítá URL mapy z konfiguračního souboru a zobrazuje ji v iframe.
- * Obsahuje meta tag pro automatický návrat na hlavní tabuli po 5 minutách nečinnosti.
- *
- * @var string $json Obsah konfiguračního souboru.
- * @var array $config Načtená konfigurace.
- * @var string $mapUrl URL adresa mapy.
- */
-// Načtení obsahu souboru song.json
 $json = file_get_contents('config.json');
 
 // Parsování JSON do PHP pole
 $config = json_decode($json, true);
 
 // Získání dat z JSON
-$mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : 0;
+$buttonUrl = isset($config['buttonUrl']) ? $config['buttonUrl'] : 0;
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +22,7 @@ $mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : 0;
 
     <link rel="stylesheet" type="text/css" href="./main.css">
 
-    <iframe src="<?php echo $mapUrl; ?>" id="mapa"
+    <iframe src="<?php echo $buttonUrl; ?>" id="mapa"
         sandbox="allow-scripts allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-presentation allow-same-origin allow-top-navigation allow-top-navigation-by-user-activation"></iframe>
 
     <div class="stranka">

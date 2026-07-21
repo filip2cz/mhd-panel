@@ -1,16 +1,4 @@
 <?php
-/**
- * Hlavní soubor informační tabule (Dashboard).
- *
- * Tento skript sestavuje výslednou stránku zobrazovanou na kiosku.
- * Načítá konfiguraci, určuje rozložení stránky podle velikosti okna (responzivita přes cookies),
- * a dynamicky vkládá moduly pro odjezdy (PID/MPVNet), počasí a pátrání po osobách.
- *
- * @var string $json Obsah konfiguračního souboru.
- * @var array $config Načtená konfigurace.
- * @var int $windowHeight Výška okna prohlížeče získaná z cookies.
- * @var int $mhdLimit Vypočítaný počet řádků odjezdů, které se vejdou na obrazovku.
- */
 $windowHeight = $_COOKIE['window_height'];
 
 // Načtení obsahu souboru config.json
@@ -31,7 +19,7 @@ $refreshTime = isset($config['refreshTime']) ? $config['refreshTime'] : 10;
 $mhdUrl = isset($config['mhdUrl']) ? $config['mhdUrl'] . "&limit=$mhdLimit" : 0;
 $mhdApiKey = isset($config['mhdApiKey']) ? $config['mhdApiKey'] : 0;
 $zastavka = isset($config['zastavka']) ? $config['zastavka'] : 0;
-$enableMap = isset($config['enableMap']) ? $config['enableMap'] : 0;
+$enableButton = isset($config['enableButton']) ? $config['enableButton'] : 0;
 $missingPerson = isset($config['missingPerson']) ? $config['missingPerson'] : "false";
 
 $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];

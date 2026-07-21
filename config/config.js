@@ -82,14 +82,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            if (form.querySelector('#mapUrl') || form.querySelector('#enableMap')) {
-                const mapUrl = document.getElementById('mapUrl');
-                const enableMap = document.getElementById('enableMap');
-                const errorDiv = document.getElementById('mapUrlError');
+            if (form.querySelector('#buttonUrl') || form.querySelector('#enableButton')) {
+                const buttonUrl = document.getElementById('buttonUrl');
+                const enableButton = document.getElementById('enableButton');
+                const errorDiv = document.getElementById('buttonUrlError');
 
                 if (errorDiv) errorDiv.style.display = 'none';
 
-                if (enableMap && enableMap.checked && mapUrl && mapUrl.value.trim() === "") {
+                if (enableButton && enableButton.checked && buttonUrl && buttonUrl.value.trim() === "") {
                     if (errorDiv) {
                         errorDiv.innerText = "Map url cannot be empty, if map is enabled";
                         errorDiv.style.display = 'block';
@@ -100,9 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
-                if (mapUrl && mapUrl.value && !isValidUrl(mapUrl.value)) {
+                if (buttonUrl && buttonUrl.value && !isValidUrl(buttonUrl.value)) {
                     if (errorDiv) {
-                        const example = mapUrl.getAttribute('data-example');
+                        const example = buttonUrl.getAttribute('data-example');
                         errorDiv.innerText = 'Invalid Map URL format. Example: ' + example;
                         errorDiv.style.display = 'block';
                     } else {

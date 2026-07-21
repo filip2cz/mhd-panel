@@ -1,15 +1,4 @@
 <?php
-/**
- * Interní logika konfiguračního panelu.
- *
- * Tento soubor je načítán uvnitř config/index.php po úspěšném přihlášení.
- * Zpracovává odeslané formuláře (POST requesty) pro úpravu config.json
- * a generuje HTML formuláře pro nastavení aplikace.
- *
- * @var string $currentUser Uživatelské jméno přihlášeného uživatele.
- * @var bool $isAdmin Příznak, zda má uživatel administrátorská práva.
- */
-
 $currentUser = isset($_COOKIE['account']) ? basename($_COOKIE['account']) : '';
 $userFile = dirname(__DIR__) . "/users/" . $currentUser . ".json";
 $isAdmin = false;
@@ -33,7 +22,7 @@ if (!empty($_POST) && !isset($_POST['oldPassword']) && !isset($_POST['uploadProf
                 if (is_numeric($value)) {
                     $configData[$key] = (int) $value;
                 }
-            } elseif ($key === 'enableMap' || $key === 'missingPerson') {
+            } elseif ($key === 'enableButton' || $key === 'missingPerson') {
                 $configData[$key] = ($value === 'true') ? 'true' : 'false';
             } else {
                 $configData[$key] = strip_tags($value);
@@ -141,19 +130,19 @@ $refreshTime = isset($config['refreshTime']) ? $config['refreshTime'] : 10;
 $mhdUrl = isset($config['mhdUrl']) ? $config['mhdUrl'] : "empty";
 $mhdApiKey = isset($config['mhdApiKey']) ? $config['mhdApiKey'] : "empty";
 $zastavka = isset($config['zastavka']) ? $config['zastavka'] : "empty";
-$enableMap = isset($config['enableMap']) ? $config['enableMap'] : "false";
-$mapUrl = isset($config['mapUrl']) ? $config['mapUrl'] : "empty";
+$enableButton = isset($config['enableButton']) ? $config['enableButton'] : "false";
+$buttonUrl = isset($config['buttonUrl']) ? $config['buttonUrl'] : "empty";
 $missingPerson = isset($config['missingPerson']) ? $config['missingPerson'] : "false";
 
 $weatherSources = isset($config['weatherUrl']) ? $config['weatherUrl'] : [];
 
 $exampleConfigFile = dirname(__DIR__, 2) . "/config.json.example";
 $mhdUrlExample = "";
-$mapUrlExample = "";
+$buttonUrlExample = "";
 if (file_exists($exampleConfigFile)) {
     $exConfig = json_decode(file_get_contents($exampleConfigFile), true);
     $mhdUrlExample = isset($exConfig['mhdUrl']) ? $exConfig['mhdUrl'] : "";
-    $mapUrlExample = isset($exConfig['mapUrl']) ? $exConfig['mapUrl'] : "";
+    $buttonUrlExample = isset($exConfig['buttonUrl']) ? $exConfig['buttonUrl'] : "";
 }
 ?>
 
@@ -235,15 +224,15 @@ if (file_exists($exampleConfigFile)) {
 
 <form method="POST">
     <div class="form-group">
-        <label for="enableMap">Enable map:</label>
-        <small id="enableMapHelp" class="help-text">If you panel has touch screen, you can enable map button on the
+        <label for="enableButton">Enable map:</label>
+        <small id="enableButtonHelp" class="help-text">If you panel has touch screen, you can enable map button on the
             footer, where user can see map of stations, trams, busses and other public transport things.</small><br>
-        <small id="mapUrlHelpinfo" class="help-text">Requires Map url to be set.</small>
+        <small id="buttonUrlHelpinfo" class="help-text">Requires Map url to be set.</small>
 
         <br><br>
 
-        <input type="hidden" name="enableMap" value="false">
-        <input type="checkbox" id="enableMap" name="enableMap" aria-describedby="enableMapHelp" value="true" <?php echo ($enableMap == 'true') ? 'checked' : '' ?> <?php echo $isAdmin ? '' : 'disabled'; ?>>
+        <input type="hidden" name="enableButton" value="false">
+        <input type="checkbox" id="enableButton" name="enableButton" aria-describedby="enableButtonHelp" value="true" <?php echo ($enableButton == 'true') ? 'checked' : '' ?> <?php echo $isAdmin ? '' : 'disabled'; ?>>
     </div>
     <br>
     <?php if ($isAdmin): ?><button type="submit">Save</button><?php endif; ?>
@@ -253,14 +242,14 @@ if (file_exists($exampleConfigFile)) {
 
 <form method="POST">
     <div class="form-group">
-        <label for="mapUrl">Map Url:</label>
-        <small id="mapUrlHelp" class="help-text">Set url to open when Map button is clicked</small>
+        <label for="buttonUrl">Map Url:</label>
+        <small id="buttonUrlHelp" class="help-text">Set url to open when Map button is clicked</small>
 
         <br><br>
 
-        <input type="text" id="mapUrl" name="mapUrl" aria-describedby="mapUrlHelp" class="fullWidthInput"
-            value="<?php echo isset($config['mapUrl']) ? htmlspecialchars($config['mapUrl']) : '' ?>" data-example="<?php echo htmlspecialchars($mapUrlExample); ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
-        <div id="mapUrlError" class="error-msg"></div>
+        <input type="text" id="buttonUrl" name="buttonUrl" aria-describedby="buttonUrlHelp" class="fullWidthInput"
+            value="<?php echo isset($config['buttonUrl']) ? htmlspecialchars($config['buttonUrl']) : '' ?>" data-example="<?php echo htmlspecialchars($buttonUrlExample); ?>" <?php echo $isAdmin ? '' : 'disabled'; ?>>
+        <div id="buttonUrlError" class="error-msg"></div>
 
     </div>
     <br>
