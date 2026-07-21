@@ -1,13 +1,4 @@
 <?php
-/**
- * Skript pro získání a zobrazení odjezdů z Golemio API (PID).
- *
- * Tento soubor je určen k inkluzi do hlavní stránky.
- * Generuje HTML tabulku s odjezdy.
- *
- * @var string $mhdUrl URL API endpointu (očekáváno z configu).
- * @var string $mhdApiKey API klíč (očekáváno z configu).
- */
 
 date_default_timezone_set('Europe/Prague');
 
@@ -24,6 +15,8 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 // Vykonání požadavku
 $response = curl_exec($ch);
+
+echo "<script>console.log('" . $response . "' );</script>";
 
 // debug: vypsání odpovědi
 //echo htmlspecialchars($response);
