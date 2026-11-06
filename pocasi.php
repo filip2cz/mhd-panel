@@ -3,7 +3,7 @@
 /**
  * Získá aktuální teplotu ze zadané URL adresy.
  *
- * Podporuje Open-Meteo API a scraping Meteo-Počasí.
+ * Podporuje Open-Meteo API, scraping Meteo-Počasí a plaintext stránku s teplotou.
  * V případě chyby se rekurzivně pokouší o další zdroje definované v globálním poli $weatherSources.
  *
  * @param string $url URL adresa zdroje počasí.
@@ -105,6 +105,39 @@ function ziskejTeplotu($url)
                 return ziskejTeplotu($GLOBALS['weatherSources'][$GLOBALS['weatherIndex']]);
             } else {
                 return "ERROR: all weather are not working";
+            }
+        }
+    } else {
+        try {
+            // Inicializace cURL
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FAILONERROR, true); // Chyby HTTP budou také zachyceny
+
+            // Načtení dat
+            $response = curl_exec($ch);
+
+            // Ověření chyby při načítání
+            if ($response === false) {
+                throw new Exception(curl_error($ch));
+            }
+
+            // Zavření cURL
+            curl_close($ch);
+
+            // Ověření prázdné odpovědi
+            $teplota = trim($response);
+            if ($teplota === '') {
+                throw new Exception("Prázdná odpověď ze serveru");
+            }
+
+            return $teplota;
+        } catch (Exception $e) {
+            $GLOBALS['weatherIndex'] += 1;
+            if ($GLOBALS['weatherIndex'] <= $GLOBALS['weatherSourcesCount']) {
+                return ziskejTeplotu($GLOBALS['weatherSources'][$GLOBALS['weatherIndex']]);
+            } else {
+                return "Nepodařilo se načíst teplotu: " . $e->getMessage();
             }
         }
     }
